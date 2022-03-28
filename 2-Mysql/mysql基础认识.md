@@ -2225,3 +2225,490 @@ COMMIT;
 场景三：你在淘宝或者京东等电商，点击购买，选好收货地址之类的之后，点击提交订单，就会让你输入支付密码支付，此时显示的价格是undo日志的价格，如果此时卖家涨价，你购买的还是涨价之前的价格，这种场景就是可重复读。可重复读不会出现脏读、不可重复读的情况，因为事务1读取不到事务2对数据的修改。对于幻读，这里只有靠临键锁才能保证不出现幻读的问题。
 
 ![img](https://img-blog.csdnimg.cn/20201209104745243.png)
+
+### 11.6.4 serializable
+
+由于事务并发执行所带来的各种问题，前三种隔离级别只适用于在某种业务场景中，凡事序列化的隔离性，让事务逐一执行，就不会产生上述问题了。但是序列化的隔离级别使用的特别少，它让事务的并发性大大降低。可重复读不会出现幻读、脏读、不可重复读的情况，因为事务1读取不到事务2对数据的修改。隔离性最高，并发性最低，其实就是没有并发，所有事务按照顺序执行。
+
+
+![img](https://img-blog.csdnimg.cn/20210405135037989.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+
+
+## 第12章 触发器
+
+触发器: trigger, 事先为某张表绑定好一段代码 ,当表中的某些内容发生改变的时候(增删改)系统会自动触发代码,执行.
+
+触发器: 事件类型, 触发时间, 触发对象
+
+事件类型: 增删改, 三种类型insert,delete和update
+
+触发时间: 前后: before和after
+
+触发对象: 表中的每一条记录(行)
+
+一张表中只能拥有一种触发时间的一种类型的触发器: 最多一张表能有6个触发器
+
+
+### 12.1 创建触发器
+
+在mysql高级结构中: 没有大括号,  都是用对应的字符符号代替
+
+触发器基本语法
+
+-- 临时修改语句结束符
+
+```
+Delimiter 自定义符号: 后续代码中只有碰到自定义符号才算结束
+
+Create trigger 触发器名字 触发时间 事件类型 on 表名 for each row
+
+Begin -- 代表左大括号: 开始
+
+-- 里面就是触发器的内容: 每行内容都必须使用语句结束符: 分号
+
+End -- 代表右带括号: 结束
+
+-- 语句结束符
+
+自定义符号
+```
+
+-- 将临时修改修正过来
+
+Delimiter  ;
+
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY0NzY3M19EQTI0MzFGMTZGRUNBRDZGMjg3QkREQjE4RTlGNUMyNQ?x-oss-process=image/format,png)
+
+### 12.2 查看触发器
+
+查看所有触发器或者模糊匹配
+
+```
+Show triggers [like ‘pattern’];
+```
+
+\g 的作用是分号和在sql语句中写’;’是等效的
+
+\G 的作用是将查到的结构旋转90度变成纵向
+
+
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY0Nzc5MF9BMkMxREMwOUIwNjA2RDMxMEUyM0JDRDFGQThDRUQ1NQ?x-oss-process=image/format,png)
+
+可以查看触发器创建语句
+
+```
+Show create trigger 触发器名字;
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY0Nzg4Nl85Q0I3NDJEMENEMDUyRUMzOEU5OEU2RDBBMzVCQ0NGNw?x-oss-process=image/format,png)
+
+
+
+所有的触发器都会保存一张表中: **Information_schema.triggers**
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY0ODAwNF80OEY4MzVFRUVBMjc0MzM5NkIyMkE4QTM4NDgwQjRBQg?x-oss-process=image/format,png)
+
+
+
+## 12.3 使用触发器
+
+触发器: 不需要手动调用, 而是当某种情况发生时会自动触发.(订单里面插入记录之后)
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY0ODI0NV8yMkQ2OEI5NThGOTc0MzRBMzRCRTQxQzMzREVDRjNDNw?x-oss-process=image/format,png)
+
+
+
+## 12.4 修改触发器&删除触发器
+
+触发器不能修改,只能先删除,后新增.
+
+```
+Drop trigger 触发器名字;
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY0ODM0NV9DMDk0MTRGMUEzQzY2NTUyNzlCM0Y2Nzk1NjRENkE4Nw?x-oss-process=image/format,png)
+
+
+
+## 12.5 触发器记录
+
+触发器记录: 不管触发器是否触发了,只要当某种操作准备执行, 系统就会将当前要操作的记录的当前状态和即将执行之后新的状态给分别保留下来, 供触发器使用: 其中, 要操作的当前状态保存到**old**中, 操作之后的可能形态保存给**new.**
+
+Old代表的是旧记录,new代表的是新记录
+
+删除的时候是没有new的; 插入的时候是没有old
+
+Old和new都是代表记录本身: 任何一条记录除了有数据, 还有字段名字.
+
+使用方式: old.字段名 / new.字段名(new代表的是假设发生之后的结果)
+
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MDE1Nl9ENTQyMTU2QzU1NjZFMEU3RjdGNjM5RTMxMjIwMUVCMQ?x-oss-process=image/format,png)
+
+如果触发器内部只有一条要执行的SQL指令, 可以省略大括号(begin和end)
+
+Create trigger 触发器名字 触发时间 事件类型 on 表名 for each row
+
+一条SQL指令;
+
+触发器: 可以很好的协调表内部的数据处理顺序和关系. 但是从JAVA角度出发, 触发器会增加数据库维护的难度, 所以较少使用触发器.
+
+
+
+# 第13章 函数
+
+
+
+## 13.1 数字函数
+
+![img](https://img-blog.csdnimg.cn/20201208104018633.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+eg：求四舍五入
+
+select round(4.6288*100)/100;
+
+![img](https://img-blog.csdnimg.cn/20201208104538953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+## 13.2 日期函数
+
+### 13.2.1 获取系统时间函数
+
+NOW()函数能获得系统日期和时间，格式yyyy-MM-dd hh:mm:ss，数据库的最小时间单位是秒s，而不是毫秒ms
+CURDATE()函数能获得当前系统日期，格式yyyy-MM-dd
+CURTIME()函数能获得当前系统时间，格式hh:mm:ss
+
+![image-20220328095009361](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220328095009361.png)
+
+### 13.2.2 日期格式化函数
+
+DATE_FORMAT(日期,  表达式)
+
+该函数用于格式化日期，返回用户想要的日期格式
+
+eg：比如查看员工入职的年份
+
+```
+SELECT ename, DATE_FORMAT(hiredate,"%Y") AS result FROM t_emp;
+```
+
+
+占位符说明
+
+![img](https://img-blog.csdnimg.cn/20201208111133290.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+### 13.2.3 日期偏移计算
+
+注意：MySQL数据库里面，两个日期不能直接加减，日期也不能与数字加减
+比如 select hiredate+1 from t_emp;
+其实hiredate是"1980-12-18"变成了19801218，然后+1，结果是19801219
+
+**DATE_ADD(日期, INTERVAL 偏移量 偏移的时间单位)**
+
+该函数可以实现日期的偏移计算，而且时间单位很灵活
+
+举几个例子
+
+```
+/*100天之后是什么时间*/
+SELECT DATE_ADD(NOW(), INTERVAL 100 DAY);
+/*300分钟之前是什么时间*/
+SELECT DATE_ADD(NOW(), INTERVAL -300 MINUTE);
+/*6个月零3天之前是什么时间*/
+SELECT DATE_ADD(DATE_ADD(NOW(),INTERVAL -6 MONTH),INTERVAL -3 DAY)
+```
+
+把日期偏移函数和日期格式化函数混合用一下
+
+**eg：**6个月零3天之前是什么时间，保留年月日即可
+
+1. ```
+    SELECT 
+    DATE_FORMAT(DATE_ADD(DATE_ADD(NOW(),INTERVAL -6 MONTH), INTERVAL -3 DAY), "%Y/%m/%d");
+   ```
+
+   ### 13.2.4 计算日期之间相隔的天数
+
+   DATEDIFF(日期1, 日期2)
+
+   该函数用来计算两个日期之间相差的天数为日期1-日期2。
+
+   **eg：**比如计算现在和2019-1-1相差多少天
+
+```
+SELECT DATEDIFF(NOW(),"2019-1-1");
+```
+
+## 13.3 字符函数
+
+![img](https://img-blog.csdnimg.cn/20201208152508542.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+![img](https://img-blog.csdnimg.cn/20201208155309727.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+**eg：**查询员工表中姓名小写、姓名大写、姓名包含的字符数、底薪末尾添加$，姓名包含有A
+
+```
+SELECT
+	LOWER(ename), UPPER(ename), LENGTH(ename),
+	CONCAT(sal,"$"),INSTR(ename,"A")
+FROM t_emp;
+```
+
+![img](https://img-blog.csdnimg.cn/20201208153636831.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+这里对于汉字，LOWER和UPPER函数是没有转换作用的，对于LENGTH函数，因为这里的数据库编码是UTF8字符集，所以一个汉字占3个字节，长度为6，INSTR函数会返回首次出现A的位置，从1开始，如果没有包含A，则返回0。
+
+INSERT例子
+
+```
+/*插入"先生"并替换从1开始的3个字符*/
+SELECT INSERT("女士早上好", 1, 3, "先生");
+```
+
+![img](https://img-blog.csdnimg.cn/20201208154956938.png)
+
+REPLACE例子
+
+```
+SELECT REPLACE("女士早上好","女士","先生");
+```
+
+![img](https://img-blog.csdnimg.cn/20201208155205113.png)
+
+SUBSTR、SUBSTRING、LPAD、TRIM例子
+
+```
+SELECT SUBSTR("你好世界", 3, 4), SUBSTRING("你好世界", 3, 2),
+LPAD(SUBSTRING("13312345678", 8, 4),11,"*"),
+TRIM("                Hello World    ");
+```
+
+![img](https://img-blog.csdnimg.cn/20201208160237162.png)	
+
+## 13.4 条件函数
+
+### 13.4.1 简单条件判断
+
+SQL语句可以利用条件函数来实现编程语言里的条件判断
+
+**IFNULL(表达式, 值)**
+
+**IF(表达式, 值1, 值2)**
+
+**eg：**SALES部门发放礼品A，其余部门发放礼品B，打印每名员工获得的礼品
+
+```
+SELECT
+	e.empno, e.ename, d.dname,
+	IF(d.dname="SALES","礼品A","礼品B")
+FROM t_emp e JOIN t_dept d ON e.deptno=d.deptno;
+```
+
+![img](https://img-blog.csdnimg.cn/20201208162836444.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM0MTE1ODk5,size_16,color_FFFFFF,t_70)
+
+### 13.4.2 复杂条件判断
+
+复杂的条件判断可以用条件语句来实现，比IF语句功能更强大
+
+```
+CASE
+    WHEN 表达式 THEN 值1
+    WHEN 表达式 THEN 值2
+    ...
+    ELSE 值N
+END
+```
+
+eg：公司集体旅游，每个部门目的地不同，SALES部门去P1地点，ACCOUNTING部门去P2地点，RESEARCH部门去P3地点，查询每名员工的旅行地点。
+
+```
+SELECT
+	e.empno, e.ename,
+	CASE
+		WHEN d.dname="SALES" THEN "p1"
+		WHEN d.dname="ACCOUNTING" THEN "p2"
+		WHEN d.dname="RESEARCH" THEN "P3"
+		END AS place
+FROM t_emp e JOIN t_dept d ON e.deptno=d.deptno;
+```
+
+![img](https://img-blog.csdnimg.cn/20201208164945442.png)
+
+## 13.5 自定义函数
+
+函数要素: 函数名, 参数列表(形参和实参), 返回值, 函数体(作用域)
+
+### 13.5.1 创建函数
+
+创建语法
+
+```
+Create function  函数名([形参列表]) returns 数据类型 -- 规定要返回的数据类型
+
+Begin
+
+-- 函数体
+
+-- 返回值: return 类型(指定数据类型);
+
+End
+```
+
+自定义函数与系统函数的调用方式是一样: select 函数名([实参列表]);
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MTAxNF82NDlEN0Y2NDlGRUE3QjAxNUVDOTg2NjIyN0IyNDA5NA?x-oss-process=image/format,png)
+
+### 13.5.2 查看函数
+
+```
+查看所有函数: show function status [like ‘pattern’];
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MTEzN18yMkNCMkU0NThGQjczQTQ1Mzg4ODA2MDQ2NzE1RTFCNw?x-oss-process=image/format,png)
+
+```
+查看函数的创建语句: show create function 函数名;
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MTIzN19ERDY1MDMyMDUyOTFERDhCRUMyMzBERUYwMDQxMTAwMQ?x-oss-process=image/format,png)
+
+### 13.5.3 修改函数&删除函数
+
+函数只能先删除后新增,不能修改.
+
+```
+Drop function 函数名;
+```
+
+### 13.5.4 函数参数
+
+参数分为两种: 定义时的参数叫形参, 调用时的参数叫实参(实参可以是数值也可以是变量)
+
+形参: 要求必须指定数据类型
+
+```
+	Function 函数名(形参名字 字段类型) returns 数据类型
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MTcyM18yODgyOTZEMEREMTQ4MTMzODhBNzZEQjE1RTkyNzkzRg?x-oss-process=image/format,png)
+
+在函数内部使用@定义的变量在函数外部也可以访问
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MTkwMl9DMkYzRTAzNEVGODIxQjc0MEVFRUIyMDAxMzQxQ0Q0Ng?x-oss-process=image/format,png)
+
+### 13.5.5 作用域
+
+Mysql中的作用域与js中的作用域完全一样
+
+全局变量可以在任何地方使用; 局部变量只能在函数内部使用.
+
+全局变量: 使用set关键字定义, 使用@符号标志
+
+局部变量: 使用declare关键字声明, 没有@符号: 所有的局部变量的声明,必须在函数体开始之前
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjA3Ml9BQTE0QzQ0NkQwQ0I4QUJGMEQzQTdDMzI5Mzk4OUVCRg?x-oss-process=image/format,png)
+
+# 第14章 存储过程
+
+存储过程简称过程,procedure, 是一种用来处理数据的方式.
+
+存储过程是一种没有返回值的函数.
+
+## 14.1 创建过程
+
+```
+Create procedure 过程名字([参数列表])
+
+Begin
+
+-- 过程体
+
+End
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjE1MF8yRUE5MjU1MTZBNDFEQ0JEQTJGNzhBODFFOTkxRDgxOA?x-oss-process=image/format,png)
+
+## 14.2 查看过程
+
+函数的查看方式完全适用于过程: 关键字换成procedure
+
+```
+查看所有过程: show procedure status [like ‘pattern’];
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjI1M184N0QwODgwMzBDOUY3MjFEMDdDRjM4MTlDNDRFRDlENA?x-oss-process=image/format,png)
+
+```
+查看过程创建语句: show create procedure 过程名;
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjM0OV83Mzc3Mjg5OEM5RDc0RTVFMkFCQzcxN0E5RDg0NDI0Ng?x-oss-process=image/format,png)
+
+## 14.3 调用过程
+
+过程没有返回值: select是不能访问的.
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjQyOF81RDZGNEYyOTc5M0QxMjUzRTMyMEE4OUM3NjRBQUNDOQ?x-oss-process=image/format,png)
+
+过程有一个专门的调用关键字: call
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjU3M18yNzUwQjlDNDM0MDhCMUJEMEY5MzMyMUEyMzRGN0M5NQ?x-oss-process=image/format,png)
+
+## 14.4 修改过程&删除过程
+
+过程只能先删除,后新增
+
+```
+Drop procedure 过程名;
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjY2OF9CODMxN0Y0MzgxRDlFQzhEQjQwRjYxMkZBRDRCMUVCOA?x-oss-process=image/format,png)
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjY2OF9CODMxN0Y0MzgxRDlFQzhEQjQwRjYxMkZBRDRCMUVCOA?x-oss-process=image/format,png)
+
+## 14.5 过程参数
+
+函数的参数需要数据类型指定, 过程比函数更严格.
+
+过程还有自己的类型限定: 三种类型
+
+In: 数据只是从外部传入给内部使用(值传递): 可以是数值也可以是变量
+
+Out: 只允许过程内部使用(不用外部数据), 给外部使用的.(引用传递: 外部的数据会被先清空才会进入到内部): 只能是变量
+
+Inout: 外部可以在内部使用,内部修改也可以给外部使用: 典型的引用传递: 只能传变量
+
+基本使用
+
+```
+Create procedure 过程名(in 形参名字 数据类型, out 形参名字 数据类型, inout 形参名字 数据类型)
+```
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1Mjc1OF8wRkZENTFBMzA0NkJFRkFEMDFFMDBGOTg5RDg4RkM1RA?x-oss-process=image/format,png)
+
+调用: out和inout类型的参数必须传入变量,而不能是数值
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MjgzNV9FRDFFOUFCMENENDU1NTkwQ0EwOTEyQTE3MDgzNkEwQw?x-oss-process=image/format,png)
+
+正确调用: 传入变量
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1Mjk2NF82Q0JBMTRFMDhDQzRFRjk4MEJGNjhCNEJGRURGQkM0RQ?x-oss-process=image/format,png)
+
+正确调用: 传入变量
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1Mjk2NF82Q0JBMTRFMDhDQzRFRjk4MEJGNjhCNEJGRURGQkM0RQ?x-oss-process=image/format,png)
+
+存储过程对于变量的操作(返回)是滞后的: 是在存储过程调用结束的时候,才会重新将内部修改的值赋值给外部传入的全局变量.
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MzA4OV84N0IzREIyNzQ3MTBFNUQ1RTNFMEUyRDNDMkFBODg1Qg?x-oss-process=image/format,png)
+
+测试: 传入数据1,2,3: 说明局部变量与全局变量无关
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MzMwMV83NjU4OUM5M0IyRjU3OUVGNjExOTYxQzQ2MDI5OUZGRA?x-oss-process=image/format,png)
+
+最后: 在存储过程调用结束之后, 系统会将局部变量重复返回给全局变量(out和inout)
+
+![img](https://imgconvert.csdnimg.cn/aHR0cHM6Ly91cGxvYWRmaWxlcy5ub3djb2Rlci5jb20vaW1hZ2VzLzIwMjAwMTAxLzQ5NDIzMjVfMTU3Nzg3MjY1MzQ0MF84OUQzQkU2QjdEOTlGMUUzODQ0OTE3NUUwNjM5RUE5NQ?x-oss-process=image/format,png)
+
