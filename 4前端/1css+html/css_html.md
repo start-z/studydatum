@@ -1,6 +1,74 @@
 
 
-#   html+css
+#     												html+css
+
+
+
+
+
+## 1像素
+
+px 表示像素值
+
+em是按照font-size的大小设置的 默认1em=16字体大小
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C5b0596d561e24f5180cc290ae3253c70%5Cclipboard.png)
+
+颜色单位就是后面可以设置，分为单词和rgb和rgbe
+
+rgb可以tiaose，rgbe可以设置透明度
+
+**文档流**
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C2d3d96c34e1543738561c9dc37774cc9%5Cclipboard.png)
+
+块元素  默认占一行，默认大小取决于你放的东西的撑满度
+
+行元素  由左向右排序
+
+## 2**盒子模型api**
+
+
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Ce3e0c0c26f0e4f94bfb77e2d6587b5f6%5Cclipboard.png)
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C80ffa43c2537464b8770f082a3b938d6%5Cclipboard.png)
+
+**1.1边框设置border**
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C6a7784e1f4b74e8f8c286ba4d48af30e%5Cclipboard.png)
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C31ffd3b0882549eea4315bdf90ac1e65%5Cclipboard.png)
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C771d16d50dd04ec0ac8f438d804913cb%5Cclipboard.png)
+
+以上还可以简写
+
+直接border： 指定值即可
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cfe1612c39c2b40f9872d25720acfc825%5Cclipboard.png)
+
+**1.2内边框padding**
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C8dd859e5b0a64a8b89957432e88a69ad%5Cclipboard.png)
+
+**1.3外边框margin**
+
+![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C27b11b3690df44d19e3d4da70b19d376%5Cclipboard.png)
+
+总结如下
+
+1border边框和内容区和内边距padding设置会改变盒子的大小
+
+2外边框会影响盒子在页面上的位置
+
+3另外在这四个元素都有共同的方向属性
+
+上top 下buttom 左right 右left
+
+4border边框属性中的样式有solid 实线  dotted点状虚线   dashed 虚线  double 双线
+
+5这几个属性都可以进行简写。直接属性后面加参数
 
 
 
@@ -70,7 +138,7 @@ footer{
 </html>
 ```
 
-![image-20220502161211126](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502161211126.png)
+![image-20220502161211126](https://gitee.com/zhou-kaifa/images/raw/master/202205061801766.png)
 
 在常用的布局当中 常常会遇到高度塌陷的问题（即子元素超出父元素的范围） 我们的解决办法是开启BFC模式
 
@@ -92,7 +160,7 @@ footer{
 
 clear（清除浮动元素带给自身元素的影响）
 
-![image-20220502164218374](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502164218374.png)
+![image-20220502164218374](https://gitee.com/zhou-kaifa/images/raw/master/202205061808776.png)
 
 ```
 <!DOCTYPE html>
@@ -176,7 +244,7 @@ clear: left;
 
 clearfix解决父子元素外内边框重叠的问题
 
-![image-20220502170635306](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502170635306.png)
+![image-20220502170635306](https://gitee.com/zhou-kaifa/images/raw/master/202205070857794.png)
 
 
 
@@ -188,9 +256,11 @@ clearfix解决父子元素外内边框重叠的问题
 
 ## 4网页定位
 
-#### 相对定位（relative  参考点为自身的元素 不脱离文档流）
+#### 相对定位
 
-![image-20220502180832522](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502180832522.png)
+（relative  参考点为自身的元素 不脱离文档流）
+
+![image-20220502180832522](https://gitee.com/zhou-kaifa/images/raw/master/202205070857708.png)
 
 
 
@@ -242,19 +312,25 @@ clearfix解决父子元素外内边框重叠的问题
 
 
 
-#### 绝对定位（ absolute  参照物为开启了定位的父级元素   脱离文档流）
+#### 绝对定位
 
-![image-20220502182255428](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502182255428.png)
+（ absolute  参照物为开启了定位的父级元素   脱离文档流）
 
-
-
-#### 固定定位（ fixed 参照物为浏览器的窗口  不脱离文档流  常见于 页面头部随着页面滚动但是位置不变 ）
-
-![image-20220502183519444](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502183519444.png)
+![image-20220502182255428](https://gitee.com/zhou-kaifa/images/raw/master/202205070858777.png)
 
 
 
-#### 粘连定位（sticky 参照物为浏览器的窗口  不脱离文档流 常用于页面滚动条下拉后元素相对于浏览器固定在某个位置）
+#### 固定定位
+
+（ fixed 参照物为浏览器的窗口  不脱离文档流  常见于 页面头部随着页面滚动但是位置不变 ）
+
+![image-20220502183519444](https://gitee.com/zhou-kaifa/images/raw/master/202205070858778.png)
+
+
+
+#### 粘连定位
+
+（sticky 参照物为浏览器的窗口  不脱离文档流 常用于页面滚动条下拉后元素相对于浏览器固定在某个位置）
 
 ```
 <!DOCTYPE html>
@@ -315,7 +391,7 @@ clearfix解决父子元素外内边框重叠的问题
 
 
 
-![image-20220502185506917](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502185506917.png)
+![image-20220502185506917](https://gitee.com/zhou-kaifa/images/raw/master/202205070858779.png)
 
 
 
@@ -325,5 +401,264 @@ clearfix解决父子元素外内边框重叠的问题
 
 ### 6图标字体
 
-![image-20220502192443185](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220502192443185.png)
+![image-20220502192443185](https://gitee.com/zhou-kaifa/images/raw/master/202205070858780.png)
 
+
+
+
+
+### 7字体设置
+
+![image-20220505102524483](https://gitee.com/zhou-kaifa/images/raw/master/202205070858781.png)
+
+#### 字体加粗设置和倾斜设置
+
+![image-20220505102853058](https://gitee.com/zhou-kaifa/images/raw/master/202205070858782.png)
+
+
+
+#### 文本的水平对齐
+
+text-align
+
+
+
+![image-20220505103327871](https://gitee.com/zhou-kaifa/images/raw/master/202205070858783.png)
+
+#### 字体元素垂直对齐
+
+vertical-align
+
+（设置字体对齐  可使用于图片大小与外边框不一致的问题）
+
+![image-20220505103228261](https://gitee.com/zhou-kaifa/images/raw/master/202205070858784.png)
+
+
+
+#### 文本下划线
+
+text-decoration
+
+
+
+
+
+![image-20220505103404800](https://gitee.com/zhou-kaifa/images/raw/master/202205070858785.png)
+
+
+
+#### 文字溢出内容显示省略号
+
+![image-20220505103652097](https://gitee.com/zhou-kaifa/images/raw/master/202205070858786.png)
+
+
+
+
+
+### 8图片设置
+
+![image-20220505110601900](https://gitee.com/zhou-kaifa/images/raw/master/202205070858787.png)
+
+
+
+
+
+渐变设置
+
+background-image: linear-gradient(red,yellow);
+
+![image-20220505163339152](https://gitee.com/zhou-kaifa/images/raw/master/202205070858788.png)
+
+
+
+径向渐变（中心点向外圈扩散）
+
+![image-20220505163634854](https://gitee.com/zhou-kaifa/images/raw/master/202205070858789.png)
+
+
+
+
+
+
+
+### 9过渡效果
+
+(需样式发生对应的数据变化后才触发）
+
+transition
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>兔子</title>
+</head>
+<body>
+    
+<div class="box1"></div>
+
+
+
+</body>
+<style>
+    .box1{
+        height: 271px;
+        width: 132px;
+        margin: 0  auto;
+        background-image: url('./兔子.png');
+        background-position: 0 0 ;
+        transition: 0.9s steps(3);
+    }
+
+    .box1:hover{
+
+        background-position:  527px  0;
+    }
+</style>
+</html>
+```
+
+
+
+
+
+
+
+### 10动画效果
+
+（自动触发）
+
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过渡</title>
+</head>
+<body>
+    
+
+    <div class="box">
+<div class="box1">
+<div class="box2">
+
+
+
+</div>
+
+</div>
+
+
+    </div>
+</body>
+
+<style>
+
+*{
+    margin: 0 0;
+    padding: 0 0;
+}
+.box1{
+    margin: 0 auto;
+    width: 400px;
+    height: 600px;
+    background-color: aqua;
+}
+/* .box1:hover .box2{
+    transition: all  2s;
+    width: 200px;
+height: 300px;
+background-image: linear-gradient(red,yellow);
+margin-left: 499px;
+} */
+.box2{
+    width: 50px;
+        height: 100px;
+    background-color: black;
+    animation-name: test;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+@keyframes  test{
+    form{
+        margin-left: 0px;
+    }
+    to{
+        margin-left: 100%;
+    }
+}
+
+</style>
+</html>
+```
+
+
+
+
+
+### 11平移
+
+transform(水平平移 x  y   z)
+
+![image-20220506163202284](https://gitee.com/zhou-kaifa/images/raw/master/202205070858790.png)
+
+
+
+### 12旋转  
+
+![image-20220506163257924](https://gitee.com/zhou-kaifa/images/raw/master/202205070858791.png)
+
+
+
+
+
+### 13   less
+
+less是css的增强版 
+
+![image-20220507093314680](https://gitee.com/zhou-kaifa/images/raw/master/202205070933796.png)
+
+
+
+
+
+### 14弹性盒子flex
+
+flex是css的一种布局    主要可用来替代浮动float（浮动可兼容老版本浏览器  但是flex有可能不行）
+
+flex盒子的元素随着页面的大小而改变
+
+
+
+```
+display：flex
+```
+
+
+
+![image-20220507142744118](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220507142744118.png)
+
+
+
+
+
+![image-20220507143106140](https://gitee.com/zhou-kaifa/images/raw/master/202205071431945.png)
+
+
+
+设置弹性元素是否自动换行
+
+flex-wrap
+
+![image-20220507143320236](https://gitee.com/zhou-kaifa/images/raw/master/202205071433281.png)
+
+
+
+### 15 媒体查询
