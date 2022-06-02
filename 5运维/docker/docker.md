@@ -1,3 +1,5 @@
+
+
 # 											docker学习
 
 
@@ -668,4 +670,149 @@ docker network   --docker网络查看
 
 为什么需要使用自定义模式？
 
-因为docker容器的ip地址是会动态变化的  在某个时段可能我们能够互相ping通ip，但是一旦ip变化就会失败，于是我们使用服务名进行ping 
+因为docker容器的ip地址是会动态变化的  在某个时段可能我们能够互相ping通ip，但是一旦ip变化就会失败，于是我们使用服务名进行ping 。
+
+**实现步骤**
+
+创建自定义network
+
+```
+docker network create  zhou_network
+```
+
+指定网络模式进入容器
+
+```
+docker run -d -p 8081:8080 --network zzyy_network  --name tomcat81 billygoo/tomcat8-jdk8
+docker run -d -p 8082:8080 --network zzyy_network  --name tomcat82 billygoo/tomcat8-jdk8
+```
+
+容器内部直接ping服务名即可
+
+![img](http://inis.inis1719.cn/202206021031074.png)
+
+
+
+
+
+### 12docker-compose容器编排
+
+解决问题：容器实例太多   缺乏统一管理。
+
+docker-compose管理由多个docker容器组成一个应用。
+
+
+
+安装
+
+```
+yum install  docker-compose-plugin
+```
+
+
+
+业务逻辑图
+
+![image-20220602110257978](http://inis.inis1719.cn/202206021103985.png)
+
+使用步骤：
+
+1创建docker-compose.yml文件
+
+![image-20220602112101185](http://inis.inis1719.cn/202206021121526.png)
+
+2使用docker-compose命令
+
+
+
+
+
+注意：在面对少量容器时，可使用容器编排 ，但是一旦容器过多  例如1000个的话就需要使用到k8s.
+
+
+
+### 13docker可视化界面工具-portainer
+
+官网地址：https://portainer.io/
+
+
+
+安装：
+
+```
+docker run -d -p 8000:8000   -p 9000:9000 -d   --name portainer --restart=always  -v /var/run/docker.sock:/var/run/docker.sock   -v portainer_data:/data      portainer/portainer
+```
+
+
+
+访问ip+9000  选择本地docker
+
+![image-20220602114311150](http://inis.inis1719.cn/202206021143171.png)
+
+
+
+
+
+### 14docker监控统计-CIG
+
+C:CAdivisor -容器资源监控工具
+
+ I:InfluxDB-  开源分布式时序
+
+Granfana: 图形化界面展示
+
+
+
+使用容器编排一次性启动3个服务
+
+docker-compose.yml文件如下：
+
+```
+version: '3.1'
+volumes:
+  grafana_data: {}
+services:
+ influxdb:
+  image: tutum/influxdb:0.9
+  restart: always
+  environment:
+    - PRE_CREATE_DB=cadvisor
+  ports:
+    - "8083:8083"
+    - "8086:8086"
+  volumes:
+    - ./data/influxdb:/data
+ cadvisor:
+  image: google/cadvisor
+  links:
+    - influxdb:influxsrv
+  command: -storage_driver=influxdb -storage_driver_db=cadvisor -storage_driver_host=influxsrv:8086
+  restart: always
+  ports:
+    - "8080:8080"
+  volumes:
+    - /:/rootfs:ro
+    - /var/run:/var/run:rw
+    - /sys:/sys:ro
+    - /var/lib/docker/:/var/lib/docker:ro
+ grafana:
+  user: "104"
+  image: grafana/grafana
+  user: "104"
+  restart: always
+  links:
+    - influxdb:influxsrv
+  ports:
+    - "3000:3000"
+  volumes:
+    - grafana_data:/var/lib/grafana
+  environment:
+    - HTTP_USER=admin
+    - HTTP_PASS=admin
+    - INFLUXDB_HOST=influxsrv
+    - INFLUXDB_PORT=8086
+    - INFLUXDB_NAME=cadvisor
+    - INFLUXDB_USER=root
+    - INFLUXDB_PASS=root
+```
+
