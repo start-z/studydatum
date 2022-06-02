@@ -44,7 +44,7 @@ docker国外镜像仓库地址：https://hub.docker.com/search?q=redis
 
 docker本质是cs架构 通过客户端连接对应镜像文件的后台守护进程
 
-![image-20220510164343830](https://gitee.com/zhou-kaifa/images/raw/master/202205101643738.png)
+![image-20220510164343830](http://inis.inis1719.cn/202206021241938.png)
 
 
 

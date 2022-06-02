@@ -12,7 +12,7 @@ px 表示像素值
 
 em是按照font-size的大小设置的 默认1em=16字体大小
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C5b0596d561e24f5180cc290ae3253c70%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241528.png)
 
 颜色单位就是后面可以设置，分为单词和rgb和rgbe
 
@@ -20,7 +20,7 @@ rgb可以tiaose，rgbe可以设置透明度
 
 **文档流**
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C2d3d96c34e1543738561c9dc37774cc9%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241530.png)
 
 块元素  默认占一行，默认大小取决于你放的东西的撑满度
 
@@ -30,31 +30,31 @@ rgb可以tiaose，rgbe可以设置透明度
 
 
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Ce3e0c0c26f0e4f94bfb77e2d6587b5f6%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241531.png)
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C80ffa43c2537464b8770f082a3b938d6%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241532.png)
 
 **1.1边框设置border**
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C6a7784e1f4b74e8f8c286ba4d48af30e%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241533.png)
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C31ffd3b0882549eea4315bdf90ac1e65%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241534.png)
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C771d16d50dd04ec0ac8f438d804913cb%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241535.png)
 
 以上还可以简写
 
 直接border： 指定值即可
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cfe1612c39c2b40f9872d25720acfc825%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241536.png)
 
 **1.2内边框padding**
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C8dd859e5b0a64a8b89957432e88a69ad%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241537.png)
 
 **1.3外边框margin**
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C27b11b3690df44d19e3d4da70b19d376%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206021241538.png)
 
 总结如下
 
@@ -138,7 +138,7 @@ footer{
 </html>
 ```
 
-![image-20220502161211126](https://gitee.com/zhou-kaifa/images/raw/master/202205061801766.png)
+![image-20220502161211126](http://inis.inis1719.cn/202206021241539.png)
 
 在常用的布局当中 常常会遇到高度塌陷的问题（即子元素超出父元素的范围） 我们的解决办法是开启BFC模式
 
@@ -160,7 +160,7 @@ footer{
 
 clear（清除浮动元素带给自身元素的影响）
 
-![image-20220502164218374](https://gitee.com/zhou-kaifa/images/raw/master/202205061808776.png)
+![image-20220502164218374](http://inis.inis1719.cn/202206021241540.png)
 
 ```
 <!DOCTYPE html>
@@ -244,7 +244,7 @@ clear: left;
 
 clearfix解决父子元素外内边框重叠的问题
 
-![image-20220502170635306](https://gitee.com/zhou-kaifa/images/raw/master/202205070857794.png)
+![image-20220502170635306](http://inis.inis1719.cn/202206021241541.png)
 
 
 
@@ -260,7 +260,7 @@ clearfix解决父子元素外内边框重叠的问题
 
 （relative  参考点为自身的元素 不脱离文档流）
 
-![image-20220502180832522](https://gitee.com/zhou-kaifa/images/raw/master/202205070857708.png)
+![image-20220502180832522](http://inis.inis1719.cn/202206021241542.png)
 
 
 
@@ -316,7 +316,7 @@ clearfix解决父子元素外内边框重叠的问题
 
 （ absolute  参照物为开启了定位的父级元素   脱离文档流）
 
-![image-20220502182255428](https://gitee.com/zhou-kaifa/images/raw/master/202205070858777.png)
+![image-20220502182255428](http://inis.inis1719.cn/202206021241543.png)
 
 
 
@@ -324,7 +324,7 @@ clearfix解决父子元素外内边框重叠的问题
 
 （ fixed 参照物为浏览器的窗口  不脱离文档流  常见于 页面头部随着页面滚动但是位置不变 ）
 
-![image-20220502183519444](https://gitee.com/zhou-kaifa/images/raw/master/202205070858778.png)
+![image-20220502183519444](http://inis.inis1719.cn/202206021241544.png)
 
 
 
@@ -391,7 +391,7 @@ clearfix解决父子元素外内边框重叠的问题
 
 
 
-![image-20220502185506917](https://gitee.com/zhou-kaifa/images/raw/master/202205070858779.png)
+![image-20220502185506917](http://inis.inis1719.cn/202206021241545.png)
 
 
 
@@ -401,7 +401,7 @@ clearfix解决父子元素外内边框重叠的问题
 
 ### 6图标字体
 
-![image-20220502192443185](https://gitee.com/zhou-kaifa/images/raw/master/202205070858780.png)
+![image-20220502192443185](http://inis.inis1719.cn/202206021241546.png)
 
 
 
@@ -409,11 +409,11 @@ clearfix解决父子元素外内边框重叠的问题
 
 ### 7字体设置
 
-![image-20220505102524483](https://gitee.com/zhou-kaifa/images/raw/master/202205070858781.png)
+![image-20220505102524483](http://inis.inis1719.cn/202206021241547.png)
 
 #### 字体加粗设置和倾斜设置
 
-![image-20220505102853058](https://gitee.com/zhou-kaifa/images/raw/master/202205070858782.png)
+![image-20220505102853058](http://inis.inis1719.cn/202206021241548.png)
 
 
 
@@ -423,7 +423,7 @@ text-align
 
 
 
-![image-20220505103327871](https://gitee.com/zhou-kaifa/images/raw/master/202205070858783.png)
+![image-20220505103327871](http://inis.inis1719.cn/202206021241549.png)
 
 #### 字体元素垂直对齐
 
@@ -431,7 +431,7 @@ vertical-align
 
 （设置字体对齐  可使用于图片大小与外边框不一致的问题）
 
-![image-20220505103228261](https://gitee.com/zhou-kaifa/images/raw/master/202205070858784.png)
+![image-20220505103228261](http://inis.inis1719.cn/202206021241550.png)
 
 
 
@@ -443,13 +443,13 @@ text-decoration
 
 
 
-![image-20220505103404800](https://gitee.com/zhou-kaifa/images/raw/master/202205070858785.png)
+![image-20220505103404800](http://inis.inis1719.cn/202206021241551.png)
 
 
 
 #### 文字溢出内容显示省略号
 
-![image-20220505103652097](https://gitee.com/zhou-kaifa/images/raw/master/202205070858786.png)
+![image-20220505103652097](http://inis.inis1719.cn/202206021241552.png)
 
 
 
@@ -457,7 +457,7 @@ text-decoration
 
 ### 8图片设置
 
-![image-20220505110601900](https://gitee.com/zhou-kaifa/images/raw/master/202205070858787.png)
+![image-20220505110601900](http://inis.inis1719.cn/202206021241553.png)
 
 
 
@@ -467,13 +467,13 @@ text-decoration
 
 background-image: linear-gradient(red,yellow);
 
-![image-20220505163339152](https://gitee.com/zhou-kaifa/images/raw/master/202205070858788.png)
+![image-20220505163339152](http://inis.inis1719.cn/202206021241554.png)
 
 
 
 径向渐变（中心点向外圈扩散）
 
-![image-20220505163634854](https://gitee.com/zhou-kaifa/images/raw/master/202205070858789.png)
+![image-20220505163634854](http://inis.inis1719.cn/202206021241555.png)
 
 
 
@@ -607,13 +607,13 @@ margin-left: 499px;
 
 transform(水平平移 x  y   z)
 
-![image-20220506163202284](https://gitee.com/zhou-kaifa/images/raw/master/202205070858790.png)
+![image-20220506163202284](http://inis.inis1719.cn/202206021241556.png)
 
 
 
 ### 12旋转  
 
-![image-20220506163257924](https://gitee.com/zhou-kaifa/images/raw/master/202205070858791.png)
+![image-20220506163257924](http://inis.inis1719.cn/202206021241557.png)
 
 
 
@@ -623,7 +623,7 @@ transform(水平平移 x  y   z)
 
 less是css的增强版 
 
-![image-20220507093314680](https://gitee.com/zhou-kaifa/images/raw/master/202205070933796.png)
+![image-20220507093314680](http://inis.inis1719.cn/202206021241558.png)
 
 
 
@@ -643,13 +643,13 @@ display：flex
 
 
 
-![image-20220507142744118](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220507142744118.png)
+![image-20220507142744118](http://inis.inis1719.cn/202206021241559.png)
 
 
 
 
 
-![image-20220507143106140](https://gitee.com/zhou-kaifa/images/raw/master/202205071431945.png)
+![image-20220507143106140](http://inis.inis1719.cn/202206021241560.png)
 
 
 
@@ -657,7 +657,7 @@ display：flex
 
 flex-wrap
 
-![image-20220507143320236](https://gitee.com/zhou-kaifa/images/raw/master/202205071433281.png)
+![image-20220507143320236](http://inis.inis1719.cn/202206021241561.png)
 
 
 

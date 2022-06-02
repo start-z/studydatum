@@ -44,13 +44,13 @@ https://jingyan.baidu.com/article/922554468d4e6b851648f4e3.html
 
 目录为   oracle目录\product\11.2.0\dbhome_1\NETWORK\ADMIN下的文件可查看对应网关及监听器的问题
 
-![image-20220304152607867](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041526885.png)
+![image-20220304152607867](http://inis.inis1719.cn/202206021241343.png)
 
 
 
 目录oracle\oracle\2022-03-04\diag\tnslsnr\magicPro\listener\trace下的listen文件可以查看监听程序的日志
 
-![image-20220304152739320](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041527196.png)
+![image-20220304152739320](http://inis.inis1719.cn/202206021241344.png)
 
 举例报错如下：
 
@@ -69,13 +69,13 @@ TNS-01153: 未能处理字符串: (DESCRIPTION=(CONNECT_DATA=(SID=orcl)(CID=(PRO
 
 windows徽标+R打开运行 并输入netplwiz
 
-![image-20220304153023860](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041530579.png)
+![image-20220304153023860](http://inis.inis1719.cn/202206021241345.png)
 
 
 
 点击需要修改的用户   重启计算机即可（必须重启）
 
-![image-20220304153119568](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041531221.png)
+![image-20220304153119568](http://inis.inis1719.cn/202206021241346.png)
 
 
 
@@ -83,23 +83,23 @@ windows徽标+R打开运行 并输入netplwiz
 
 网关监听器查看对应的host是否为localhost或者 127.0.0.1  
 
-![image-20220304153416799](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041534587.png)
+![image-20220304153416799](http://inis.inis1719.cn/202206021241347.png)
 
-![](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041534217.png)
+![](http://inis.inis1719.cn/202206021241348.png)
 
 2关于oracle监听服务客户端
 
-![image-20220304153503626](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041535782.png)
+![image-20220304153503626](http://inis.inis1719.cn/202206021241349.png)
 
 
 
 客户端监听服务查看
 
-![image-20220304153537987](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041535571.png)
+![image-20220304153537987](http://inis.inis1719.cn/202206021241350.png)
 
 客户端服务名主机查看
 
-![](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041536646.png)
+![](http://inis.inis1719.cn/202206021241351.png)
 
 
 
@@ -111,11 +111,11 @@ windows徽标+R打开运行 并输入netplwiz
 
 
 
-![image-20220304153710298](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041537138.png)
+![image-20220304153710298](http://inis.inis1719.cn/202206021241352.png)
 
 点击服务即可查看 另外还支持手动开启
 
-![image-20220304153750777](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203041537546.png)
+![image-20220304153750777](http://inis.inis1719.cn/202206021241353.png)
 
 
 

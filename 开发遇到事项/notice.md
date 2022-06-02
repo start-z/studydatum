@@ -10,7 +10,7 @@
 </properties>
 ```
 
-![image-20220127153028344](https://gitee.com/zhou-kaifa/images/raw/master/Images/202201271530181.png)
+![image-20220127153028344](http://inis.inis1719.cn/202206021242905.png)
 
 
 

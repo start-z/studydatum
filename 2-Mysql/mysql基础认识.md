@@ -36,7 +36,7 @@ Java相关的数据库：MYSQL，Oracle．
 这里使用MySQL数据库。MySQL中可以有多个数据库，数据库是真正存储数据的地方。
 
 数据库与数据库管理系统的关系
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071347464.png)
+![img](http://inis.inis1719.cn/202206021238791.png)
 
 ## **1.2 数据库表**
 
@@ -56,7 +56,7 @@ Java相关的数据库：MYSQL，Oracle．
 
 根据表字段所规定的数据类型，我们可以向其中填入一条条的数据，而表中的每条数据类似类的实例对象。表中的一行一行的信息我们称之为记录。
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071348294.png)
+![img](http://inis.inis1719.cn/202206021238792.png)
 
 表记录与java类对象的对应关系
 
@@ -76,11 +76,11 @@ Java相关的数据库：MYSQL，Oracle．
 
 安装后，MySQL会以windows服务的方式为我们提供数据存储功能。开启和关闭服务的操作：右键点击我的电脑→管理→服务→可以找到MySQL服务开启或停止。
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071349553.png)
+![img](http://inis.inis1719.cn/202206021238793.png)
 
 也可以在DOS窗口，通过命令完成MySQL服务的启动和停止（必须以管理运行cmd命令窗口）
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071349973.png)
+![img](http://inis.inis1719.cn/202206021238794.png)
 
 ## 2.2 登录MySQL数据库
 
@@ -90,13 +90,13 @@ MySQL是一个需要账户名密码登录的数据库，登陆后使用，它提
 
 例如：mysql -uroot –proot
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071349861.png)
+![img](http://inis.inis1719.cn/202206021238795.png)
 
 格式2：cmd>  mysql --host=ip地址 --user=用户名 --password=密码
 
 例如：mysql --host=127.0.0.1  --user=root --password=root
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071350267.png)
+![img](http://inis.inis1719.cn/202206021238796.png)
 
 
 
@@ -110,13 +110,13 @@ MySQL是一个需要账户名密码登录的数据库，登陆后使用，它提
 
 [client]和[mysql]是客户端配置信息，[mysqld]是数据库配置信息
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071353447.png)
+![img](http://inis.inis1719.cn/202206021238797.png)
 
 提示：[mysql]中默认no-beep表示当数据库发生错误的时候，不要让主板发出蜂鸣器的声音
 
 [mysqld]大致说明如下(已去掉默认注释，不然篇幅太长)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071353096.png)
+![img](http://inis.inis1719.cn/202206021238798.png)
 
 
 
@@ -152,7 +152,7 @@ SQL分类：
 
 5.MySQL中的我们常使用的数据类型如下
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071415025.png)
+![img](http://inis.inis1719.cn/202206021238799.png)
 
 
 
@@ -289,7 +289,7 @@ CREATE TABLE temp(/*实验精度丢失问题*/
 
 实际在你的磁盘上是这样存储的
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071434598.png)
+![img](http://inis.inis1719.cn/202206021238800.png)
 
 ### 3.4.2 查看表
 
@@ -304,7 +304,7 @@ show tables;
 
  图形化结果类似于下图
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071435734.png)
+![img](http://inis.inis1719.cn/202206021238801.png)
 
 这里的命名就告诉了你是 test 数据库里面的表
 
@@ -329,7 +329,7 @@ SHOW COLUMNS FROM student;
 /* 这两种方式结果一模一样，第一种更常见，显然命令更短你也更愿意用 */
  图形化结果类似于下图
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071435547.png)
+![img](http://inis.inis1719.cn/202206021238802.png)
 
 ### 3.4.3 删除表
 
@@ -453,7 +453,7 @@ DROP home_tel;
 
 来一道选择题，题目是：删除数据表中多余的列的语句是哪些，有同学上去就选了个B，认为删除就是DELETE，这里的答案是AC。
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071440660.png)
+![img](http://inis.inis1719.cn/202206021238803.png)
 
 ```
 rename table 表名 to 新表名;
@@ -503,7 +503,7 @@ show variables like 'character%'; 查看所有mysql的编码
 
 
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071442855.png)
+![img](http://inis.inis1719.cn/202206021238804.png)
 
 在图中与客户端有关的编码设置:
 
@@ -541,7 +541,7 @@ SQL操作中有多种方式可以给表增加主键: 大体分为三种.
 
 方案1: 在创建表的时候,直接在字段之后,跟primary key关键字(主键本身不允许为空)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071452873.png)
+![img](http://inis.inis1719.cn/202206021238805.png)
 
 
 
@@ -551,7 +551,7 @@ SQL操作中有多种方式可以给表增加主键: 大体分为三种.
 
 方案2: 在创建表的时候, 在所有的字段之后, 使用primary key(主键字段列表)来创建主键(如果有多个字段作为主键,可以是复合主键)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071452377.png)
+![img](http://inis.inis1719.cn/202206021238806.png)
 
 方案3: 当表已经创建好之后, 额外追加主键: 可以通过修改表字段属性, 也可以直接追加.
 
@@ -559,7 +559,7 @@ SQL操作中有多种方式可以给表增加主键: 大体分为三种.
 Alter table 表名  add primary key(字段列表);
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071452618.png)
+![img](http://inis.inis1719.cn/202206021238807.png)
 
 
 
@@ -567,7 +567,7 @@ Alter table 表名  add primary key(字段列表);
 
 主键对应的字段中的数据必须唯一，且不能为NULL， 一旦重复,数据操作失败(增和改)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071453624.png)
+![img](http://inis.inis1719.cn/202206021238808.png)
 
 
 
@@ -577,7 +577,7 @@ Alter table 表名  add primary key(字段列表);
 
 主键对应的字段中的数据必须唯一，且不能为NULL， 一旦重复,数据操作失败(增和改)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071612575.png)
+![img](http://inis.inis1719.cn/202206021238809.png)
 
 建议主键使用数字类型，因为数字的检索速度非常快，并且主键如果是数字类型，还可以设置自动增长。
 
@@ -595,7 +595,7 @@ Alter table 表名 drop primary key;
 
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071613669.png)
+![img](http://inis.inis1719.cn/202206021238810.png)
 
 4.1.4 主键分类
 在实际创建表的过程中, 很少使用真实业务数据作为主键字段(业务主键,如学号,课程号); 大部分的时候是使用逻辑性的字段(字段没有业务含义,值是什么都没有关系), 将这种字段主键称之为逻辑主键.
@@ -628,27 +628,27 @@ Name varchar(10) not null
 
   任何一个字段要做自增长必须前提是本身是一个索引(key一栏有值)，**auto_increment**表示自动编号
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071626433.png)
+![img](http://inis.inis1719.cn/202206021238811.png)
 
 
 
 自增长字段必须是数字(整型)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071627300.png)
+![img](http://inis.inis1719.cn/202206021238812.png)
 
 ### 4.2.2 自增长使用
 
 当自增长被给定的值为NULL或者默认值的时候会触发自动增长.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071627551.png)
+![img](http://inis.inis1719.cn/202206021238813.png)
 
 增长如果对应的字段输入了值,那么自增长失效: 但是下一次还是能够正确的自增长(从最大值+1)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071630139.png)
+![img](http://inis.inis1719.cn/202206021238814.png)
 
 如何确定下一次是什么自增长呢? 可以通过查看表创建语句看到.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071639179.png)
+![img](http://inis.inis1719.cn/202206021238815.png)
 
 ### 4.2.3 修改自增长
 
@@ -660,11 +660,11 @@ Name varchar(10) not null
 
 Alter table 表名 auto_increment  = 值;
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071639690.png)
+![img](http://inis.inis1719.cn/202206021238816.png)
 
 向上修改可以
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071640713.png)
+![img](http://inis.inis1719.cn/202206021238817.png)
 
 
 
@@ -674,17 +674,17 @@ Alter table 表名 auto_increment  = 值;
 
 查看自增长对应的变量: show variables like ‘auto_increment%’;
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071643018.png)
+![img](http://inis.inis1719.cn/202206021238818.png)
 
 可以修改变量实现不同的效果: 修改是对整个数据修改,而不是单张表: (修改是会话级)
 
 Set auto_increment_increment = 5; -- 一次自增5
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071643513.png)
+![img](http://inis.inis1719.cn/202206021238819.png)
 
 测试效果: 自动使用自增长
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071643829.png)
+![img](http://inis.inis1719.cn/202206021238820.png)
 
 ### 4.2.4 删除自增长
 
@@ -694,7 +694,7 @@ Set auto_increment_increment = 5; -- 一次自增5
 Alter table 表名 modify 字段 类型;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071644613.png)
+![img](http://inis.inis1719.cn/202206021238821.png)
 
 ## 4.3 唯一键（unique/ unique key）
 
@@ -708,21 +708,21 @@ Alter table 表名 modify 字段 类型;
 
 方案1: 在创建表的时候,**字段之后**直接跟**unique/ unique key**
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071645423.png)
+![img](http://inis.inis1719.cn/202206021238822.png)
 
 方案2: 在所有的字段之后增加unique key(字段列表); -- 复合唯一键
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071645096.png)
+![img](http://inis.inis1719.cn/202206021238823.png)
 
 方案3: 在创建表之后增加唯一键
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071646352.png)
+![img](http://inis.inis1719.cn/202206021238824.png)
 
 ### 4.3.2 唯一键约束
 
 唯一键与主键本质相同: 唯一的区别就是唯一键默认允许为空,而且是多个为空.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071646081.png)
+![img](http://inis.inis1719.cn/202206021238825.png)
 
 如果唯一键也不允许为空: 与主键的约束作用是一致的.
 
@@ -737,7 +737,7 @@ Alter table 表名 drop unique key; -- 错误: 唯一键有多个
 
 Alter table 表名 drop index 索引名字; -- 唯一键默认的使用字段名作为索引名字
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071647313.png)s
+![img](http://inis.inis1719.cn/202206021238826.png)s
 
 ## 4.4 外键（foreign key）
 
@@ -753,7 +753,7 @@ Alter table 表名 drop index 索引名字; -- 唯一键默认的使用字段名
 
 创建表的时候增加外键: 在所有的表字段之后,使用foreign key(外键字段) references 外部表(主键字段)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071652744.png)
+![img](http://inis.inis1719.cn/202206021238827.png)
 
 在新增表之后增加外键: 修改表结构
 
@@ -761,7 +761,7 @@ Alter table 表名 drop index 索引名字; -- 唯一键默认的使用字段名
 Alter table 表名 add [constraint 外键名字] foreign key(外键字段) references 父表(主键字段);
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071653410.png)
+![img](http://inis.inis1719.cn/202206021238828.png)
 
 ### 4.4.2 修改外键&删除外键
 
@@ -773,7 +773,7 @@ Alter table 表名 add [constraint 外键名字] foreign key(外键字段) refer
 
 Alter table 表名 drop foreign key 外键名; -- 一张表中可以有多个外键,但是名字不能相同
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071654201.png)
+![img](http://inis.inis1719.cn/202206021238829.png)
 
 ### 4.4.3 外键作用
 
@@ -783,13 +783,13 @@ Alter table 表名 drop foreign key 外键名; -- 一张表中可以有多个外
 
 对子表约束: 子表数据进行写操作(增和改)的时候, 如果对应的外键字段在父表找不到对应的匹配: 那么操作会失败.(约束子表数据操作)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071655577.png)
+![img](http://inis.inis1719.cn/202206021238830.png)
 
 对父表约束: 父表数据进行写操作(删和改: 都必须涉及到主键本身), 如果对应的主键在子表中已经被数据所引用, 那么就不允许操作
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071701061.png)
+![img](http://inis.inis1719.cn/202206021238832.png)
 
-![](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071702463.png)
+![](http://inis.inis1719.cn/202206021238833.png)
 
 
 
@@ -801,7 +801,7 @@ Alter table 表名 drop foreign key 外键名; -- 一张表中可以有多个外
 3.一张表中的外键名字不能重复.
 4,增加外键的字段(数据已经存在),必须保证数据与父表主键要求对应.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071706426.png)
+![img](http://inis.inis1719.cn/202206021238834.png)
 
 ### 4.4.5 外键约束
 
@@ -828,15 +828,15 @@ Set null: 置空模式: 父表的操作之后,子表对应的数据(外键字段
 指定模式的语法
 
 Foreign key(外键字段) references 父表(主键字段) on delete set null on update cascade;
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071702926.png)
+![img](http://inis.inis1719.cn/202206021238835.png)
 
 更新操作: 级联更新
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071702252.png)
+![img](http://inis.inis1719.cn/202206021238836.png)
 
 删除操作: 置空
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071703864.png)
+![img](http://inis.inis1719.cn/202206021238837.png)
 
 删除置空的前提条件: 外键字段允许为空(如果不满足条件,外键无法创建)
 
@@ -886,15 +886,15 @@ CREATE TABLE t_emp(
 父表t_dept加一个数据如下：
 
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071704932.png)
+![img](http://inis.inis1719.cn/202206021238838.png)
 
 子表t_emp加一个数据如下：
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071705652.png)
+![img](http://inis.inis1719.cn/202206021238839.png)
 
 此时我想删除父表的数据，结果报错
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203071705733.png)
+![img](http://inis.inis1719.cn/202206021238840.png)
 
 结果发现有子表t_emp外键约束着父表，删除失败。必须先删除子表的约束数据才能删除父表的数据，那这样就失去了增减改查的灵活性了，并且更严重的是，
 
@@ -969,7 +969,7 @@ SHOW INDEX FROM t_message;
 
  查出来如下，有添加的普通索引和主键索引
 
-![image-20220308103825913](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081038203.png)
+![image-20220308103825913](http://inis.inis1719.cn/202206021238841.png)
 
 ### 4.5.4 删除索引
 
@@ -1211,7 +1211,7 @@ Create table 表名 like 数据库.表名
 
 
 
-![image-20220308113851437](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081138241.png)
+![image-20220308113851437](http://inis.inis1719.cn/202206021238842.png)
 
 蠕虫复制: 先查出数据, 然后将查出的数据新增一遍
 
@@ -1219,7 +1219,7 @@ Create table 表名 like 数据库.表名
 Insert into 表名[(字段列表)] select 字段列表/* from 数据表名;  数据操作
 ```
 
-![image-20220308114208855](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081142655.png)
+![image-20220308114208855](http://inis.inis1719.cn/202206021238843.png)
 
 蠕虫复制的意义
 
@@ -1248,7 +1248,7 @@ UPDATE t_emp SET empno=empno+1, mgr=mgr+1
 ORDER BY empno DESC;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081146239.png)
+![img](http://inis.inis1719.cn/202206021238844.png)
 
 eg2：把月收入前三名的员工底薪减100元，用LIMIT子句完成
 
@@ -1259,7 +1259,7 @@ ORDER BY sal+IFNULL(comm,0) DESC
 LIMIT 3;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081146089.png)
+![img](http://inis.inis1719.cn/202206021238845.png)
 
 eg3：把10部门中，工龄达到20年的员工，底薪增加200元
 
@@ -1269,7 +1269,7 @@ SET sal=sal+200
 WHERE deptno=10 AND DATEDIFF(NOW(),hiredate)/365 >= 20
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081147512.png)
+![img](http://inis.inis1719.cn/202206021238846.png)
 
 ### 7.2.1 UPDATE语句中的内连接
 
@@ -1308,7 +1308,7 @@ SET e.deptno=d.deptno, e.job="ANALYST"
 WHERE e.ename="ALLEN" AND d.dname="RESEARCH"
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081149419.png)
+![img](http://inis.inis1719.cn/202206021238847.png)
 
 
 
@@ -1346,7 +1346,7 @@ SET e.deptno=20
 WHERE e.deptno IS NULL OR (d.dname="SALES" AND e.sal<2000);
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081154407.png)
+![img](http://inis.inis1719.cn/202206021238848.png)
 
 ## 7.3 删除数据
 
@@ -1384,7 +1384,7 @@ LIMIT 1;
 
 提示：如果表中存在主键自增长,那么当删除之后, 自增长不会还原，下一条数据记录插入会在上一次计数的基础继续增加
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081156088.png)
+![img](http://inis.inis1719.cn/202206021238849.png)
 
 ### 7.3.1 DELETE语句中的内连接
 
@@ -1405,7 +1405,7 @@ FROM t_emp e JOIN t_dept d ON e.deptno=d.deptno
 WHERE d.dname="SALES";
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081157949.png)
+![img](http://inis.inis1719.cn/202206021238851.png)
 
 
 
@@ -1418,7 +1418,7 @@ FROM t_emp e JOIN
 ON e.deptno=t.deptno AND e.sal<t.avg;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081158127.png)
+![img](http://inis.inis1719.cn/202206021238852.png)
 
 **eg3：**删除员工KING和他的下属的员工记录，用表连接实现
 
@@ -1452,7 +1452,7 @@ FROM t_emp e LEFT JOIN t_dept d ON e.deptno=d.deptno
 WHERE d.dname="SALES" OR e.deptno IS NULL;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081346848.png)
+![img](http://inis.inis1719.cn/202206021238853.png)
 
 ### 7.3.3 快速删除数据表全部记录  (删除数据)
 
@@ -1491,7 +1491,7 @@ All或者*: 默认保留所有的结果
 
 Distinct: 去重, 查出来的结果,将重复给去除(所有字段都相同)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081349044.png)
+![img](http://inis.inis1719.cn/202206021238854.png)
 
 ### 7.4.2 去重查询
 
@@ -1608,7 +1608,7 @@ eg：根据不同的部门号分组显示平均工资
 SELECT deptno, ROUND(AVG(sal)) FROM t_emp GROUP BY deptno;/*round四舍五入为整数*/
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081401364.png)
+![img](http://inis.inis1719.cn/202206021238855.png)
 
 **逐级分组**
 
@@ -1623,7 +1623,7 @@ GROUP BY deptno, job
 ORDER BY deptno;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081401450.png)
+![img](http://inis.inis1719.cn/202206021238856.png)
 
 这里千万千万要注意一个硬性要求！
 
@@ -1643,7 +1643,7 @@ WHERE sal >= 2000
 GROUP BY deptno;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081403445.png)
+![img](http://inis.inis1719.cn/202206021238857.png)
 
 ### 7.4.8 Having子句
 
@@ -1660,7 +1660,7 @@ WHERE AVG(sal) >= 2000
 GROUP BY deptno;
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081406401.png)
+![img](http://inis.inis1719.cn/202206021238858.png)
 
 结果运行出错，我们前面也说了，WHERE子句不允许出现聚合函数。而且WHERE优先级高于GROUP BY，在条件筛选的时候不知道按照什么范围去筛选，是全部数据筛选还是分部门数据筛选呢？
 
@@ -1740,7 +1740,7 @@ SQL中将连接查询分成四类: 内连接,外连接,自然连接和交叉连�
 
 如下，某个条件左右表相同部分的交集
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081416421.png)
+![img](http://inis.inis1719.cn/202206021238859.png)
 
 基本语法
 
@@ -1790,13 +1790,13 @@ Where子查询: 子查询出现where条件中，where语句里**不推荐**使�
 Create view 视图名字 as select语句; -- select语句可以是普通查询;可以是连接查询; 可以是联合查询; 可以是子查询.
 ```
 
-![image-20220308161323378](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081613257.png)
+![image-20220308161323378](http://inis.inis1719.cn/202206021238860.png)
 
 创建单表视图: 基表只有一个
 
 创建多表视图: 基表来源至少两个
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081556809.png)
+![img](http://inis.inis1719.cn/202206021238861.png)
 
 
 
@@ -1831,7 +1831,7 @@ Create view 视图名字 as select语句; -- select语句可以是普通查询;�
 Alter view 视图名字 as 新的select语句;
 ```
 
-![image-20220308161727042](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081617642.png)
+![image-20220308161727042](http://inis.inis1719.cn/202206021238862.png)
 
 ## 9.5 删除视图
 
@@ -1864,7 +1864,7 @@ Drop view 视图名字;
 
 1.多表视图不能新增数据
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081619148.png)
+![img](http://inis.inis1719.cn/202206021238863.png)
 
 2.可以向单表视图插入数据: 但是视图中包含的字段必须有基表中所有不能为空(或者没有默认值)字段
 
@@ -1874,27 +1874,27 @@ Drop view 视图名字;
 
 3.视图是可以向基表插入数据的.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081619070.png)
+![img](http://inis.inis1719.cn/202206021238864.png)
 
 ### 9.7.2 删除数据
 
 多表视图不能删除数据
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081628832.png)
+![img](http://inis.inis1719.cn/202206021238865.png)
 
 单表视图可以删除数据
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081628340.png)
+![img](http://inis.inis1719.cn/202206021238866.png)
 
 ### 9.7.3 更新数据
 
 理论上不能单表视图还是多表示视图都可以更新数据.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081628943.png)
+![img](http://inis.inis1719.cn/202206021238867.png)
 
 更新限制: with check option, 如果对视图在新增的时候,限定了某个字段有限制: 那么在对视图进行数据更新操作时,系统会进行验证: 要保证更新之后,数据依然可以被实体查询出来,否则不让更新.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081629355.png)
+![img](http://inis.inis1719.cn/202206021238868.png)
 
 ## 9.8 视图算法
 
@@ -1915,7 +1915,7 @@ Create algorithm = 指定算法 view 视图名字 as select语句;
 
 ```
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081630676.png)
+![img](http://inis.inis1719.cn/202206021238869.png)
 
 视图算法选择: 如果视图的select语句中会包含一个查询子句(五子句), 而且很有可能顺序比外部的查询语句要靠后, 一定要使用算法temptable,其他情况可以不用指定(默认即可).
 
@@ -1946,7 +1946,7 @@ Create algorithm = 指定算法 view 视图名字 as select语句;
 存储引擎: mysql进行数据存储的方式: 主要是两种: innodb和myisam(免费)
 
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081633829.png)
+![img](http://inis.inis1719.cn/202206021238870.png)
 
 对比myisam和innodb: 数据存储方式
 
@@ -1954,13 +1954,13 @@ Innodb: 只有表结构,数据全部存储到ibdata1文件中
 
 Myisam: 表,数据和索引全部单独分开存储
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081638177.png)
+![img](http://inis.inis1719.cn/202206021238871.png)
 
 
 
 这种文件备份通常适用于myisam存储引擎: 直接复制三个文件即可, 然后直接放到对应的数据库下即可以使用.
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081638287.png)
+![img](http://inis.inis1719.cn/202206021238872.png)
 
 
 
@@ -2004,7 +2004,7 @@ Terminated by: 每行以什么结束,默认是”\r\n”,换行符
 
 Load data infile 文件所在路径 into table 表名[(字段列表)] fields字段处理 lines 行处理; -- 怎么备份的怎么还原
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081641841.png)
+![img](http://inis.inis1719.cn/202206021238873.png)
 
 ## 10.3sql备份
 
@@ -2024,7 +2024,7 @@ Load data infile 文件所在路径 into table 表名[(字段列表)] fields字�
 
 数据可以通过导出向导
 
-![image-20220308165428337](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081654421.png)
+![image-20220308165428337](http://inis.inis1719.cn/202206021238874.png)
 
 
 
@@ -2041,7 +2041,7 @@ Load data infile 文件所在路径 into table 表名[(字段列表)] fields字�
 我们应该利用日志来间接写入。
 
 MySQL总共5种日志，其中只有redo日志和undo日志与事务有关
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081656931.png)
+![img](http://inis.inis1719.cn/202206021238876.png)
 
 日志就相当于数据文件的一个副本，SQL语句操作什么样的记录，MySQL就会把这些记录拷贝到undo日志，然后增删改查的操作就会记录到redo日志，最后把redo日志和数据库文件进行同步就行了。即使同步过程中断电了，有了redo日志的存在，重启MySQL数据库之后继续同步数据，同步成功后我们修改的数据就真正同步到数据库里面了，有事务的数据库抵抗风险的能力变强了。
 
@@ -2084,7 +2084,7 @@ set  autocommit=oFF
 
 事务操作原理: 事务开启之后, 所有的操作都会临时保存到事务日志, 事务日志只有在得到commit命令才会同步到数据表,其他任何情况都会清空(rollback, 断电, 断开连接)
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081704566.png)
+![img](http://inis.inis1719.cn/202206021238877.png)
 
 
 
@@ -2124,7 +2124,7 @@ set  autocommit=oFF
 
 如下图，事务1查询course_id=59的平均分score为9.2，而事务2此时将其平均分修改为9.6，当事务1再次读取的时候，平均分就变成了9.6，此时事务2回滚，事务1就是读取的无效数据，简称脏读。
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081709714.png)
+![img](http://inis.inis1719.cn/202206021238878.png)
 
 **二、不可重复读：一个事物前后两次读取的同一数据不一致。**
 
@@ -2134,7 +2134,7 @@ set  autocommit=oFF
 
 **三、幻读：指一个事务两次查询的结果集记录数不一致**
 
-如下图，事务1查询到平均分在9.5到9.8之间的记录数是2条，经过事务2对course_id=43的平均分修改，导致事务1第二次查询的记录数为3条，这种情况就叫幻读，幻读的数据最终也是有效的数据。![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081711221.png)
+如下图，事务1查询到平均分在9.5到9.8之间的记录数是2条，经过事务2对course_id=43的平均分修改，导致事务1第二次查询的记录数为3条，这种情况就叫幻读，幻读的数据最终也是有效的数据。![img](http://inis.inis1719.cn/202206021238879.png)
 
 ### **D: Durability持久性****
 
@@ -2152,7 +2152,7 @@ set  autocommit=oFF
 
 在某些特定场合，我们又想让事务之间读取到一些临时数据，这就需要修改事务的隔离级别
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081713169.png)
+![img](http://inis.inis1719.cn/202206021238880.png)
 
 设置事务隔离级别的语法如下：
 
@@ -2177,7 +2177,7 @@ SET [PERSIST|GLOBAL|SESSION]
 
 场景一：比如买票的场景，逢年过节都需要买票回家，假如A和B都在买同一辆车的车票，此时还剩最后一张票，A点击购买，但是还没付款提交，因为查看不到事务之间的临时数据，所以B查看时，也还剩一张票，于是B点击购买，立即付款提交，结果A就会购买失败。所以理想的情况应该是，当A点击购买去付款时，B应该看得到这个临时数据，显示没有票才对。这种场景会出现脏读、幻读、不可重复读情况，隔离性最低，并发性最高。
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081715026.png)
+![img](http://inis.inis1719.cn/202206021238881.png)
 
 
 
@@ -2204,14 +2204,14 @@ COMMIT;
 
 结果显示如下，前者在事务1中修改sal为1，事务2中却看不到
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081715957.png)
+![img](http://inis.inis1719.cn/202206021238882.png)
 
 ### 11.6.2 read committed
 
 场景二：银行转账的场景，A事务执行往Scott账户转账1000的操作，B事务执行扣除Scott账户100块的操作，如果A能读取到B事务未提交的数据，那么转账后就会修改为5900，而此时因为各种原因需要回滚支出100元的这个操作，此时账户就只有5900块了，凭空消失100块，所以只有A事务读取到B事务提交后的数据才能保证转账的正确性。这种场景就和买票的场景完全不同。这种场景是会出现幻读和不可重复读的。
 
 
-![img](https://gitee.com/zhou-kaifa/images/raw/master/Images/202203081720695.png)
+![img](http://inis.inis1719.cn/202206021238883.png)
 
 ```
 SET SESSION TRANSACTION ISOLATION LEVEL READ COMMITTED;/*只能读取其他事务提交的数据*/
@@ -2380,7 +2380,7 @@ NOW()函数能获得系统日期和时间，格式yyyy-MM-dd hh:mm:ss，数据�
 CURDATE()函数能获得当前系统日期，格式yyyy-MM-dd
 CURTIME()函数能获得当前系统时间，格式hh:mm:ss
 
-![image-20220328095009361](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220328095009361.png)
+![image-20220328095009361](http://inis.inis1719.cn/202206021238884.png)
 
 ### 13.2.2 日期格式化函数
 
