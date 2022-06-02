@@ -1,0 +1,106 @@
+/* 首页的css */
+.boxMain{
+    background-color:#b0b0b0;
+    
+
+}
+.boxMain::after{
+    content: '';
+    clear: both;
+  display: block;
+}
+.box{
+    width: 1540px;
+    margin: 0  auto;
+}
+.box2{
+    width: 1540px;
+    margin: 0  auto;
+    height: 440px;
+}
+/* 设置为行内元素 */
+.spanTitle{
+
+}
+.ulTitle  li{
+    line-height: 40px;
+    float: left;
+list-style: none;
+margin-right: 17px;
+
+}
+.ulTitle  a{
+position: relative;
+text-decoration: none;
+}
+/* 设置下载app鼠标移入事件 */
+.downOpen:hover  >  .downPopup{
+    display: block;
+}
+.downPopup{
+    display: none;
+    padding: 20px 20px;
+    background-color:#fff;
+    position: absolute;
+    top: 28px;
+    left: -90px;
+    z-index: 9999;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+}
+
+/* 右侧导航条 */
+.ulRightTitle  li{
+    line-height: 40px;
+    float: right;
+list-style: none;
+margin-right: 17px;
+
+display: block;
+}
+.ulTitle  a:hover{
+    color: aliceblue;
+}
+.search{
+    height: 100px;
+}
+.ulImg{
+    margin-right: 150px;
+}
+.ulFrom{
+  float: right;
+}
+
+
+.centerTitle{
+    width: 220px;
+    height: 440px;
+background: rgba(105,101,101,.6);
+float: left;
+}
+.rightCenter  li{
+    list-style: none;
+    float: left;
+}
+.rightCenter img{
+    height: 440px;
+    width: 1320px;
+}
+.rightTitle{
+    display: none;
+    width: 1320px;
+    height: 440px;
+    background-color:aliceblue;
+    float: left;
+}
+
+
+.ulTitle  li:hover ~  .lipoPup{
+    display: block;
+}
+
+.lipoPup{
+    display: none;
+height: 200px;
+background-color: yellow;
+clear: both;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex</title>
+</head>
+<body>
+    
+
+<ul>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+</ul>
+
+</body>
+<style>
+
+li{
+    list-style: none;
+    line-height: 50px;
+    background-color: aliceblue;
+    height: 200px; 
+    width: 200px;
+    /* 不足系数 */
+    flex-shrink: 1;
+    /* 增长系数 */
+    flex-grow: 1;
+}
+ul{
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+</style>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相对定位</title>
+</head>
+<body>
+    <h1>需求是将2移动到1的旁边</h1>
+其中margin-top是可以做到的但是需要修改多个元素 不方便  于是我们可以采用相对定位的方式去实现
+    <div class="div1">1</div>
+    <div class="div2">2</div>
+    <div class="div3">3</div>
+</body>
+<style>
+    body{
+        height: 2000px;
+    }
+.div1,.div2,.div3{
+    width: 200px;
+    height: 200px;
+}
+.div1{
+    background-color: aliceblue;
+  
+}
+
+.div2{
+    background-color:antiquewhite;
+    /* //绝对定位 */
+    /* position: absolute; */
+    /* 相对定位 */
+    /* position: relative; */
+    /* 粘连定位 */
+    position: sticky;
+    top: 0;
+    
+
+}
+
+.div3{
+    background-color:yellow;
+        width: 100%;
+}
+</style>
+
+
+
+</html>
