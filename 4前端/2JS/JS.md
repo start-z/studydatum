@@ -16,13 +16,13 @@
 <script  type="text/javascript">   </script>
 ```
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C027b25da1634428bbcc427076240ee93%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412568.png)
 
 #### 在外部引入自己的js
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C8d294f7b324d475a8860d9fdda79c5f2%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412569.png)
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cbeb750cec15c4e69950418ef7e78d44e%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412570.png)
 
 
 
@@ -32,13 +32,13 @@
 
 ### **1.2js中的变量定义**
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C90ab24a1139246a3884104a3bf462efa%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412571.png)
 
 另外script也可以像css那样使用
 
 其中的运算
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cfc83a81e47544011acc3af78efd6c19b%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412573.png)
 
 ​                               
 
@@ -48,19 +48,19 @@
 
 
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C3108b30966a94e4592995fe7d8321a93%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412574.png)
 
 #### **使用方式**
 
 
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C0460112832414d6aba36a60fa7707c00%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412575.png)
 
 
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C6def75b3c9784ea2a004774d2aff0c58%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412576.png)
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C3f6cfaec7e354cab81f7e87917b4f3c3%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412577.png)
 
 #### 注意事项
 
@@ -68,23 +68,23 @@ function函数是不允许重载的（重载就是方法名相同，参数不同
 
 原因：是因为function函数有默认的参数rgments
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cbd66ace9185d4dd6aef6d61524961903%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412578.png)
 
 
 
 ### **1.4  js中自定义对象**
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C69d1329c00674ede966ff2c5597998f1%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412579.png)
 
  同样也可以new  类   使用非常简单
 
 加入自己的属性其实就是自己的类名直接以.属性名然后赋值即可。
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Ce94f5c0860bf40ef97c718dd73f372a7%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412580.png)
 
 2   花括号使用
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Ce3980746d62246f4b54998f194378148%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412581.png)
 
 和第一个差不多  只不过赋值是在括号中
 
@@ -274,9 +274,9 @@ return false;
 
 直接在html中使用
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C4454e48cdfa14386a5b1ee238ab6ce74%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412582.png)
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cd48274a1ae124672a06c781fd2f96687%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412583.png)
 
 #### 动态注册
 
@@ -284,7 +284,7 @@ return false;
 
 window.函数名 =  函数
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C4169f9f759954cd28c25562ea803bce1%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412584.png)
 
 
 
@@ -321,11 +321,11 @@ window.函数名 =  函数
 
    3 .2  正则表达式
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C1addea9176cd48b09ecf54786121e631%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412585.png)
 
 最常见的是定义一个变量  格式为   var  xxx=/{xxx}/ 表示验证是否包含这个元素
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cc1ffbb82db7840daa29286a101562391%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412586.png)
 
 ​           3.3    全选  反选  全不选
 
@@ -335,11 +335,11 @@ window.函数名 =  函数
 
 全不选是遍历为flase
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Ccf52d04ee5d440ce95920b51ad0e5398%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412587.png)
 
 3.3  document获取的方法
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Ccc7c4a9e47254943adf848118dc25f76%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412588.png)
 
 如果有id就可以通过id获取
 
@@ -347,10 +347,10 @@ window.函数名 =  函数
 
 如果没有id， name就可以通过标签名获取
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cf64aea8ebd5e426c92b0b0c6f6c8c9b0%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412589.png)
 
  3.4   节点
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cd4a41b7d91834d1aaf8d1efcaacd49e6%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071412590.png)
 
 ​         
