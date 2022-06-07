@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>onsubmit时间提交事件</title>
+</head>
+<body>
+
+    <form  method="get"  action="www.baidu.com" onsubmit=" return  onsubDemo()">
+        <button  value="hello" type="text">
+    </form>
+
+
+<script>
+    function onsubDemo() {
+        alert("hello,我是onsubDemo事件")
+return false;
+    }
+</script>
+
+
+</body>
+</html>
