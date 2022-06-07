@@ -48,7 +48,7 @@ linux 的发行版本
 
 ​                       vi和vim 的使用
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C9a85388ebc434a27be5021c2c7ac91dd%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742449.png)
 
 其中vi分为三种模式  一般 只能查看   进入编辑模式输入i  
 
@@ -80,7 +80,7 @@ linux 的发行版本
 
 ### 3.2帮助命令   
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C556fffb461574693ba2f02e76d7abcf8%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742450.png)
 
 ```
 man + 命令句    其中man时帮助手册  是linux 自带的  按q退出
@@ -180,7 +180,7 @@ echo   可以输出环境变量和常量
 
 在脚本中经常出现
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Ca8c2ab505d0545ae8b0cd4b60311c593%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742451.png)
 
   查看命令指令  >  文件名
 
@@ -291,7 +291,7 @@ chown -R  新的所有者  文件或者目录名               递归的修改�
 只修改组  chgrp
 ```
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C427e04d8164641abbf57fd84e143a98b%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742452.png)
 
 ### 3.7权限管理命令
 
@@ -315,7 +315,7 @@ chown -R  新的所有者  文件或者目录名               递归的修改�
 
 文件或者目录有三部分权限   所有者权限   同组用户权限   其他组权限
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C0c4327f06bef476faffcbcbf76791c01%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742453.png)
 
 第一位  表示 当前是目录还是文件
 
@@ -333,7 +333,7 @@ chown -R  新的所有者  文件或者目录名               递归的修改�
   修改文件或者目录的权限   chmod
 ```
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C05d3f736e75f4d20b60d8b28c8e068de%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742454.png)
 
  u表示所有者
 
@@ -347,7 +347,7 @@ o表示不同组用户
 
 chmod  g+w  文件名    给文件名添加写的权限、
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cd7e23963a13741868f80ecfd25d71a5a%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742455.png)
 
 数字修改权限
 
@@ -367,11 +367,11 @@ tab键自动补齐剩下的内容
 
 ### 3.8  linux网络配置
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C4e1439b3cfb843bdb8c45989689d40a9%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742456.png)
 
 网络配置需要进入到 etc中
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C0a154aa7cb044ab3b665c4232ad8aaeb%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742457.png)
 
 ```
 查看进程  ps
@@ -385,7 +385,7 @@ ps  -ef  格式的显示所有进程 比较清楚
 关闭进程   kill   - 9  KID
 ```
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cea9fa012fa774ab1bfbe4c9849fb8ee2%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742458.png)
 
 ​    
 
@@ -393,7 +393,7 @@ ps  -ef  格式的显示所有进程 比较清楚
             linux 的服务管理   systemctl
 ```
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5Cb69087f5e4eb4b4095ce6a8651edd578%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742459.png)
 
 什么是服务管理呢  就是后台运行的必要的程序  也是进程
 
@@ -411,11 +411,11 @@ systemctl  start  firewalld  开启防火墙
 
 ### 3.9linux 的rpm打包
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C5c21a1f0efe244a3a101d6be31fc4c4d%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742460.png)
 
 rpm其实就和windows  的.exe文件差不多
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C50f8338127364c95b201dc2c2f11cefb%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742461.png)
 
 ```
 查看安装包  rpm -qa
@@ -501,7 +501,7 @@ su+用户名
 su  root
 ```
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C02fafc39a7564ece8f5637dd9b5948f8%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742462.png)
 
 高切换低 不需要密码
 
@@ -511,7 +511,7 @@ su  root
 
 ##  5 linux的组
 
-![img](D:%5C%E6%9C%89%E9%81%93%E4%BA%91%E7%AC%94%E8%AE%B0%5CqqDBD1F84E1C986CF725E8AFDDB2DCE08F%5C160c718974ec4fef8caefa87647a0169%5Cclipboard.png)
+![img](http://inis.inis1719.cn/202206071742463.png)
 
 解释    linux 的组就相当于分工作  例如我是研发部  你是技术部
 
