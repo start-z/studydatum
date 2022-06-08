@@ -1,0 +1,20 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: redis
+  redis:
+    port: 6379
+    host: 192.168.47.129
+    password: qq171935
+    database: 0
+logging:
+  level:
+    com:
+      zhou: debug
+  file:
+    path: D:\开源项目\学习笔记\8中间件\redis\src\main\resources\log
+
+
+
+

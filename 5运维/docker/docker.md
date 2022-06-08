@@ -331,10 +331,6 @@ docker  pull registry   --拉取镜像
  docker run -it --privileged=true  --volumes-from 夫容器卷   镜像名
 ```
 
-docker run -p 6379:6379    --name myredis   --privileged=true    -v     /usr/dockerRedis/config/redis.conf:/etc/redis/redis.conf  -v   /usr/dockerRedis/config/data:/data -d 7614ae9453d1 redis-server /etc/redis/redis.conf 
-
-
-
 
 
 
@@ -344,10 +340,8 @@ docker run -p 6379:6379    --name myredis   --privileged=true    -v     /usr/doc
 **redis**
 
 ```
-docker run -p 6379:6379 --name MyRedis --privileged=true -v /usr/dockerRedis/config/redis.conf:/etc/redis/redis.conf  -v  /usr/dockerRedis/config/data:/data -d 7614ae9453d1 redis-server /etc/redis/redis.conf 
+docker run -p 6379:6379   --name RedisStudy   --privileged=true -v /usr/dockerRedis/config/redis.conf:/etc/redis/redis.conf  -v  /usr/dockerRedis/config/data:/data -d 7614ae9453d1 redis-server /etc/redis/redis.conf  --restart=always  --appendonly yes  
 ```
-
-
 
 **mysql**
 
