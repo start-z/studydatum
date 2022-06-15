@@ -1,0 +1,14 @@
+server:
+  port: 10220
+spring:
+  application:
+    name: shiroDemo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: qq1719351997
+    url: jdbc:mysql://localhost:3306/2022-inis?useSSL=false&amp&useUnicode=true&amp&characterEncoding=utf8&serverTimezone=UTC
+logging:
+  level:
+    com:
+      zhou:  debug
