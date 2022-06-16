@@ -1,5 +1,7 @@
 # 															JUC高并发
 
+视频地址：https://www.bilibili.com/video/BV1Kw411Z7dF?share_source=copy_pc
+
 ## 1什么是juc？
 
 ### 1.1JUC简介
@@ -233,7 +235,7 @@ public class LockCustomization {
 
 
 
-5集合线程不安全
+## 5集合线程不安全
 
 案例如下：
 
@@ -302,7 +304,7 @@ HashMap解决方法：
 
 
 
-## 5多线程锁
+## 6多线程锁
 
 synchronized锁实现同步的基础：java中每一个对象都可以作为锁
 
@@ -316,14 +318,14 @@ synchronized锁实现同步的基础：java中每一个对象都可以作为锁
 
 
 
-### 5.1公平锁和非公平锁
+### 6.1公平锁和非公平锁
 
 - 非公平锁：线程饿死   效率高。
 - 公平锁：每个线程都能够运行  效率相对比较低。
 
 
 
-### 5.2可重入锁（递归锁）
+### 6.2可重入锁（递归锁）
 
 例如进入家里  我们只需要打开家门的锁就可以自由进入家里面的房间就叫做**可重入锁**。
 
@@ -506,13 +508,13 @@ public class SyncList {
 
 
 
-### 5.3死锁
+### 6.3死锁
 
 两个线程及以上为了抢夺资源而导致线程互相等待叫做**死锁**。
 
 
 
-## 6Callable接口
+## 7Callable接口
 
 Callable与Runable接口区别
 
@@ -521,9 +523,9 @@ Callable与Runable接口区别
 | Callable | 有           | 抛出         | call（） |
 | Runable  | 无           | 不会抛出     | run（）  |
 
-## 7JUC辅助类
+## 8JUC辅助类
 
-### 7.1CountDownlatch（计数器）
+### 8.1CountDownlatch（计数器）
 
 情景问题：
 
@@ -586,7 +588,7 @@ public class CountDownlatchDemo {
 
 
 
-### 7.2Cyclibarrier（循环栅栏）
+### 8.2Cyclibarrier（循环栅栏）
 
 线程之间互相等待 ，直到到达统一共同点后才释放  设置一个目标值  达到目标值才会往下执行。
 
@@ -619,7 +621,7 @@ public static void CyclibarrierDemo() {
 
 
 
-### 7.3Semaphore（信号灯）
+### 8.3Semaphore（信号灯）
 
 线程获取许可证     别的线程没有许可证不可进入
 
@@ -653,7 +655,7 @@ public static void CyclibarrierDemo() {
 
 
 
-## 8JUC读写锁
+## 9JUC读写锁
 
 - 乐观锁：通过增加版本号version  来达到事务一致性。
 - 悲观锁：每个操作都进行加锁。
@@ -768,7 +770,7 @@ public class ReadWrite {
 
 
 
-## 9JUC阻塞队列
+## 10JUC阻塞队列
 
 ![image-20220615204107652](http://inis.inis1719.cn/202206152041741.png)
 
@@ -792,9 +794,9 @@ BlockingQueue（阻塞队列）
 
 
 
-## 10线程池(Thread  pool)
+## 11线程池(Thread  pool)
 
-### 10.1简介
+### 11.1简介
 
 一种线程模式。线程过多会带来**调度开销**，进而影响**性能*  ，线程池维护多个线程.保证内核的充分利用和防止过分调度.
 
@@ -804,11 +806,11 @@ BlockingQueue（阻塞队列）
 2. 提高相应速度
 3. 提高线程可管理性
 
-### 10.2线程池的创建方式
+### 11.2线程池的创建方式
 
 类为**Executors**
 
-#### 10.2.1一池多线程
+#### 11.2.1一池多线程
 
 场景如下:
 
@@ -831,7 +833,7 @@ BlockingQueue（阻塞队列）
     }
 ```
 
-#### 10.2.2一池一线程
+#### 11.2.2一池一线程
 
 ```
     /**
@@ -848,7 +850,7 @@ BlockingQueue（阻塞队列）
     }
 ```
 
-#### 10.2.3一池可扩容线程
+#### 11.2.3一池可扩容线程
 
 ```
     /**
@@ -868,7 +870,7 @@ BlockingQueue（阻塞队列）
 
 
 
-### 10.3底层原理(ThreadPoolExecutor)
+### 11.3底层原理(ThreadPoolExecutor)
 
 ```
    /**
@@ -907,7 +909,7 @@ BlockingQueue（阻塞队列）
 
 
 
-### 10.4线程池底层工作流程
+### 11.4线程池底层工作流程
 
 ![image-20220615212357807](http://inis.inis1719.cn/202206152123909.png)
 
@@ -937,7 +939,7 @@ BlockingQueue（阻塞队列）
 
 
 
-## 11JUC分支合并框架Fork/Join
+## 12JUC分支合并框架Fork/Join
 
 Fork/Join它可以将一个大的任务拆分成多个子任务进行并行处理,最后将子任务结果合并成最后的计算结果,并进行输出。Fork/Join 框架要完成两件事情:。
 
@@ -1016,7 +1018,7 @@ public class ForkJoin {
 
 
 
-## 12异步调度
+## 13异步调度
 
 - 同步: 和另一件事物一同做事
 - 异步:自己做自己的事
@@ -1026,12 +1028,29 @@ CompletableFuture   线程异步调用接口
 **异步调用有返回值案例**
 
 ```
-
+ public static void asycIsVoid() {
+        try {
+            System.out.println(CompletableFuture.supplyAsync(() -> {
+                System.out.println(Thread.currentThread().getName() + "cccccc");
+                return 1024;
+            }).whenComplete((t, u) -> {
+                System.out.println(t);
+                System.out.println(u);
+            }).get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 ```
 
 **异步调用无返回值案例**
 
 ```
-
+    public static void asycVoid() {
+        CompletableFuture.runAsync(() -> {
+            System.out.println(Thread.currentThread().getName() + "cccccc");
+        });
+    }
 ```
 
