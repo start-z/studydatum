@@ -2,7 +2,6 @@ package com.zhou.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -30,8 +29,8 @@ public class ViewController {
 
     @GetMapping("swagger")
     public String toSwagger() {
-        stringRedisTemplate.opsForValue().set("timeout", "100", 20, TimeUnit.SECONDS);
         log.info(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "进入了swagger页面");
+        stringRedisTemplate.opsForValue().set("timeout", "100", 20, TimeUnit.SECONDS);
         return "swagger-ui/index.html";
     }
 
