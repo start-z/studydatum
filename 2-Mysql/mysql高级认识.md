@@ -1,5 +1,9 @@
 # Mysql高级认识
 
+视频地址：https://www.bilibili.com/video/BV1iq4y1u7vj?p=188&share_source=copy_pc
+
+mysql官网：https://www.mysql.com/
+
 
 
 ## 1mysql8.0以前及以后字符集规则及原理
@@ -937,12 +941,275 @@ set  gloabl/session   TRANSACTION    isolation  level  隔离级别
 
 事务的隔离性是通过**锁机制**实现.
 
-redo log 称为重做日志  保证持久性
+redo log 称为重做日志  保证持久性 提供再写入操作
 
 undo log 称为回滚日志  保证原子性\一致性.
 
 事务的状态为回滚时  对应的日志文件时undo  log
 
+redo,log存储的是物理级别的指令
 
+undo.log存储的是逻辑操作  存储的是与之语句相反的语句
+
+比如进行了依据insert语句 那么就会记录一条delete语句
+
+
+
+
+
+### 12.5.1redo.log
+
+**为什么需要 redo日志？**
+
+![image-20220623100203267](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623100203267.png)
 
 ![image-20220622194327997](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622194327997.png)
+
+
+
+好处  ：
+
+- 降低磁盘刷新频率
+- 日志本身占用空间小 
+
+特色：
+
+-    顺序写入磁盘
+- 事务过程中 不断记录语句
+
+
+
+**redo日志的组成**
+
+可分为2部分
+
+- （rode  log buffer）
+
+保存在内存中  易丢失
+
+- 重做日志文件    （rode log  file）
+
+保存在硬盘中
+
+
+
+redo流程如下：
+
+![image-20220623101149819](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623101149819.png)
+
+
+
+设置刷盘策略
+
+```
+set  innodb_flush_log_at_trx+commoit=0
+
+0 事务提交时 每间隔一段时间刷盘
+1  每次事务提交后 刷盘  默认
+2  用户手动刷盘
+
+```
+
+
+
+### 12.5.2undo.log
+
+作用:
+
+- 回滚数据
+- mvcc
+
+
+
+
+
+## 13锁
+
+### 13.1数据类型读、写锁
+
+读锁：也称共享锁  多个事务共享数据不会产生脏读
+
+写锁：也称排他锁  事务未完成前  会阻塞其他事务
+
+在innodb上  读写锁可支持到**行表**上。
+
+
+
+加锁方式
+
+- s锁
+
+```
+select  ... for share;
+```
+
+- x锁
+
+```
+select ...for  update；
+```
+
+
+
+### 13.2操作粒度 表锁、页锁、行锁
+
+操作范围越小越好。
+
+#### 13.2.1表锁
+
+不依赖于引擎   开销小 并发能力差
+
+**加锁方式**
+
+```
+lock tables  t read:  表s锁
+lock tables  t write; 表x锁  适用于Myasam
+```
+
+![image-20220623105207918](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623105207918.png)
+
+
+
+##### 意向锁
+
+存在意义：
+
+协调行锁和表锁之间的关系  支持 多粒度（行、表）锁共存。
+
+![image-20220623105853345](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623105853345.png)
+
+
+
+意向锁分为2种
+
+- 意向共享锁
+- 意向排他锁
+
+加锁方式
+
+```
+select  ..... lock in  share  mood;  意向共享锁
+select  ..... for update;    意向排他锁
+```
+
+![image-20220623110633418](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623110633418.png)
+
+
+
+##### 自增锁
+
+![image-20220623135735545](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623135735545.png)
+
+#### 13.2.2行锁
+
+行锁在存储引擎层实现。
+
+优点：粒度小 更精确
+
+缺点： 开销比较大  容易出现**死锁**
+
+
+
+##### 记录锁
+
+![image-20220623140355110](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623140355110.png)
+
+##### 间隙锁  gapS  locks
+
+作用：防止**插入数据**而产生幻读.
+
+![image-20220623142116968](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623142116968.png)
+
+##### 临键锁（next-key  locks  ）
+
+  ![image-20220623142148303](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623142148303.png)
+
+
+
+##### 插入意向锁（insert intention locks）
+
+ ![image-20220623142531253](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623142531253.png)
+
+#### 13.2.3页锁
+
+#####  对待锁的态度乐观锁、悲观锁  
+
+###### 乐观锁
+
+加版本号/时间戳字段实现
+
+###### 悲观锁  
+
+总是上锁   通过数据库自身的锁机制
+
+使用场景：
+
+乐观适用于读操作比较多的  比如库存超卖
+
+悲观适合于写操作比较多的
+
+##### 按照枷锁的方式：显示锁、隐式锁
+
+###### 隐式锁
+
+![image-20220623144428605](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623144428605.png)
+
+###### 显示锁
+
+自己可以看见的锁
+
+
+
+#### 13.2.4全局锁
+
+指令
+
+```
+flush  tables   with read  lock
+```
+
+#### 13.2.5死锁
+
+两个事务都持有需要的锁 并且都等待对方释放 且本身不释放。
+
+##### 产生死锁的必要条件
+
+1. 两个及以上的事务
+2. 两个事务都有锁并且有新的锁
+3. 对同一资源互相请求等待解锁
+4. 锁资源同时只能被一个事务持有
+
+##### 如何处理死锁？
+
+1. 等待超时 自动释放锁i
+2. 使用死锁检测  进行死锁处理
+
+
+
+
+
+### 13.5锁结构（p182）
+
+innodb锁结构如下：
+
+![image-20220623145513555](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623145513555.png)
+
+### 13.6MVCC问题
+
+#### 13.6.1什么是mvcc？
+
+![image-20220623150201209](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623150201209.png)
+
+
+
+#### 13.6.2mvcc实现原理
+
+常用于读已提交  和重复读
+
+mvcc实现依赖于隐藏字段  undo.log  ，read view,
+
+什么是read  view；
+
+![image-20220623150656416](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623150656416.png)
+
+ 
