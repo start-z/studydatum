@@ -792,7 +792,7 @@ null值列表：   把为null的列统一记录起来 ，如果没有null值  �
 
 ### 11.3第四范式
 
-![image-20220622150052209](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622150052209.png)
+![image-20220622150052209](http://inis.inis1719.cn/202206232219451.png)
 
 
 
@@ -818,7 +818,7 @@ null值列表：   把为null的列统一记录起来 ，如果没有null值  �
 
 数据从一个合法状态转换为另一个合法状态
 
-![image-20220622183837939](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622183837939.png)
+![image-20220622183837939](http://inis.inis1719.cn/202206232219453.png)
 
 - 隔离性：
 
@@ -881,11 +881,11 @@ saveoiubt  变量名// 保存点
 
 脏读:A事务提交了B事务未提交的事务.
 
-![image-20220622190052903](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622190052903.png)
+![image-20220622190052903](http://inis.inis1719.cn/202206232219454.png)
 
 不可重复读: A事务读取数据后   B事务进行了数据修改  A再去读数据的时候就会发现两次读取的数据不一致.
 
-![image-20220622190313577](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622190313577.png)
+![image-20220622190313577](http://inis.inis1719.cn/202206232219456.png)
 
 
 
@@ -893,13 +893,13 @@ saveoiubt  变量名// 保存点
 
 
 
-![image-20220622190400129](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622190400129.png)
+![image-20220622190400129](http://inis.inis1719.cn/202206232219457.png)
 
 
 
 #### 12.4.2mysql的隔离级别
 
-![image-20220622190840040](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622190840040.png)
+![image-20220622190840040](http://inis.inis1719.cn/202206232219458.png)
 
 读未提交
 
@@ -911,7 +911,7 @@ saveoiubt  变量名// 保存点
 
 隔离级别越高性能越差
 
-![image-20220622190803588](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622190803588.png)
+![image-20220622190803588](http://inis.inis1719.cn/202206232219459.png)
 
 
 
@@ -961,9 +961,9 @@ undo.log存储的是逻辑操作  存储的是与之语句相反的语句
 
 **为什么需要 redo日志？**
 
-![image-20220623100203267](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623100203267.png)
+![image-20220623100203267](http://inis.inis1719.cn/202206232219460.png)
 
-![image-20220622194327997](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220622194327997.png)
+![image-20220622194327997](http://inis.inis1719.cn/202206232219461.png)
 
 
 
@@ -995,7 +995,7 @@ undo.log存储的是逻辑操作  存储的是与之语句相反的语句
 
 redo流程如下：
 
-![image-20220623101149819](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623101149819.png)
+![image-20220623101149819](http://inis.inis1719.cn/202206232219462.png)
 
 
 
@@ -1066,7 +1066,7 @@ lock tables  t read:  表s锁
 lock tables  t write; 表x锁  适用于Myasam
 ```
 
-![image-20220623105207918](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623105207918.png)
+![image-20220623105207918](http://inis.inis1719.cn/202206232219463.png)
 
 
 
@@ -1076,7 +1076,7 @@ lock tables  t write; 表x锁  适用于Myasam
 
 协调行锁和表锁之间的关系  支持 多粒度（行、表）锁共存。
 
-![image-20220623105853345](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623105853345.png)
+![image-20220623105853345](http://inis.inis1719.cn/202206232219464.png)
 
 
 
@@ -1092,13 +1092,13 @@ select  ..... lock in  share  mood;  意向共享锁
 select  ..... for update;    意向排他锁
 ```
 
-![image-20220623110633418](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623110633418.png)
+![image-20220623110633418](http://inis.inis1719.cn/202206232219465.png)
 
 
 
 ##### 自增锁
 
-![image-20220623135735545](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623135735545.png)
+![image-20220623135735545](http://inis.inis1719.cn/202206232219466.png)
 
 #### 13.2.2行锁
 
@@ -1112,23 +1112,23 @@ select  ..... for update;    意向排他锁
 
 ##### 记录锁
 
-![image-20220623140355110](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623140355110.png)
+![image-20220623140355110](http://inis.inis1719.cn/202206232219467.png)
 
 ##### 间隙锁  gapS  locks
 
 作用：防止**插入数据**而产生幻读.
 
-![image-20220623142116968](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623142116968.png)
+![image-20220623142116968](http://inis.inis1719.cn/202206232219468.png)
 
 ##### 临键锁（next-key  locks  ）
 
-  ![image-20220623142148303](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623142148303.png)
+  ![image-20220623142148303](http://inis.inis1719.cn/202206232219469.png)
 
 
 
 ##### 插入意向锁（insert intention locks）
 
- ![image-20220623142531253](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623142531253.png)
+ ![image-20220623142531253](http://inis.inis1719.cn/202206232219470.png)
 
 #### 13.2.3页锁
 
@@ -1152,7 +1152,7 @@ select  ..... for update;    意向排他锁
 
 ###### 隐式锁
 
-![image-20220623144428605](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623144428605.png)
+![image-20220623144428605](http://inis.inis1719.cn/202206232219471.png)
 
 ###### 显示锁
 
@@ -1192,13 +1192,13 @@ flush  tables   with read  lock
 
 innodb锁结构如下：
 
-![image-20220623145513555](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623145513555.png)
+![image-20220623145513555](http://inis.inis1719.cn/202206232219472.png)
 
 ### 13.6MVCC问题
 
 #### 13.6.1什么是mvcc？
 
-![image-20220623150201209](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623150201209.png)
+![image-20220623150201209](http://inis.inis1719.cn/202206232219473.png)
 
 
 
@@ -1210,6 +1210,6 @@ mvcc实现依赖于隐藏字段  undo.log  ，read view,
 
 什么是read  view；
 
-![image-20220623150656416](C:%5CUsers%5C%E4%B8%80%E5%8F%B7%E7%BA%BF%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20220623150656416.png)
+![image-20220623150656416](http://inis.inis1719.cn/202206232219474.png)
 
  
