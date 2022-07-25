@@ -16,7 +16,7 @@
 
 ## 3架构
 
-![architecture](C:\Users\一号线\Desktop\architecture.png)
+![architecture](http://inis.inis1719.cn/202207260002230.png)
 
 上图描述为容器初始化启动->然后服务提供者进行注册到注册中心（zookeeper等）再然后提交给消费者 ，消费者通过注册中心得到对应的服务提供者。然后将提供者和消费者一起进行监控。
 
