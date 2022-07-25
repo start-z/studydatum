@@ -7,8 +7,6 @@ import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
 /**
@@ -26,11 +24,12 @@ public class DemoAspect {
     }
 
     @AfterReturning(pointcut = "@annotation(demo)")
-    public void  afterRun(JoinPoint joinPoint, Demo  demo){
+    public void afterRun(JoinPoint joinPoint, Demo demo) {
         log.info("我是运行中");
     }
+
     @AfterThrowing(pointcut = "@annotation(demo)")
-    public void  afterThrow(JoinPoint joinPoint, Demo  demo){
+    public void afterThrow(JoinPoint joinPoint, Demo demo) {
         log.info("我是运行异常");
     }
 }
