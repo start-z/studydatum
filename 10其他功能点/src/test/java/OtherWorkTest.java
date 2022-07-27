@@ -26,6 +26,7 @@ public class OtherWorkTest {
       private OtherWorkService otherWorkService;
     @Test
     public void  test(){
+        otherWorkService.hello();
         String cmd="ping  www.baidu.com";
         try {
             Process exec = Runtime.getRuntime().exec(cmd);
