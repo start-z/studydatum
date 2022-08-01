@@ -6,6 +6,7 @@ import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -19,13 +20,13 @@ import java.util.concurrent.TimeoutException;
  */
 @SpringBootTest(classes = RibbitMqConsumer.class)
 @RunWith(value = SpringRunner.class)
+@RabbitListener()
 public class RibbitMqConsumer {
     private final static String QUEUE_NAME = "hello";
 
     private final static String Exchangl_NAME = "mrzhou11";
 
     private static ConnectionFactory factory = new ConnectionFactory();
-
     public static void main(String[] args) throws IOException {
         Channel channel = getChannel();
         String queue = channel.queueDeclare().getQueue();
