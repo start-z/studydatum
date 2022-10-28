@@ -1,12 +1,13 @@
 server:
   port: 8084
 spring:
-  profiles: test
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8083/eureka/
-  instance:
-    instance-id: consumption
-    appname: hello，consumption
+  application:
+    name: consumption
+  profiles: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+
 
