@@ -1,5 +1,8 @@
 package com.zhou.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -9,17 +12,17 @@ import java.util.Date;
  * @author makejava
  * @since 2022-12-15 15:17:53
  */
-public class User   implements Serializable  {
+public class User implements Serializable {
     private static final long serialVersionUID = 548558719311967604L;
     /**
-    * 主键id
-    */
+     * 主键id
+     */
     private Integer id;
-
+    @TableField("username")
     private String username;
-
+    @TableField("password")
     private String password;
-
+    @TableField("creatTime")
     private Date creatTime;
 
 
