@@ -2,6 +2,7 @@ package com.zhou.controller;
 
 import com.zhou.lister.event.UserEvent;
 import com.zhou.pojo.User;
+import com.zhou.utils.I18nUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -29,6 +30,8 @@ public class CommonController {
     private ApplicationContext applicationContext;
     @Autowired
     private ApplicationEventPublisher applicationEventPublisher;
+    @Autowired
+    private I18nUtils i18nUtils;
 
     @GetMapping("/lister")
     public void listterEventTest() {
@@ -59,5 +62,11 @@ public class CommonController {
             outputStream.close();
         }
 
+    }
+
+
+    @GetMapping("getI18n")
+    public String getI18n() {
+        return i18nUtils.getEnglish("com.zhou.demo");
     }
 }
