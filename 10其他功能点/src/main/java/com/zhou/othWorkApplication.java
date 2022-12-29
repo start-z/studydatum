@@ -13,7 +13,6 @@ import org.springframework.core.annotation.Order;
  * @description:
  */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-@Order(11)
 public class othWorkApplication   implements ApplicationContextInitializer {
     public static void main(String[] args) {
         SpringApplication.run(othWorkApplication.class, args);

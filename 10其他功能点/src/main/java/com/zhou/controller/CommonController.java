@@ -1,6 +1,6 @@
 package com.zhou.controller;
 
-import com.zhou.lister.event.UserEvent;
+import com.zhou.event.UserEvent;
 import com.zhou.pojo.User;
 import com.zhou.utils.I18nUtils;
 import org.apache.commons.io.IOUtils;
