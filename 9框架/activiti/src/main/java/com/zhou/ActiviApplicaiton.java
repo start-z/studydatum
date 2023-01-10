@@ -1,19 +1,21 @@
 package com.zhou;
 
-import org.activiti.engine.*;
-import org.activiti.engine.repository.Deployment;
 import org.activiti.spring.boot.SecurityAutoConfiguration;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class
         , org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class})
-public class ActiviApplicaiton {
+public class ActiviApplicaiton   {
     public static void main(String[] args) {
         SpringApplication.run(ActiviApplicaiton.class, args);
     }
-
+    //刷新上下文启动成功
+    @PostConstruct
+    public void  springAfterRunner(){
+        System.out.println("系统刷新启动");
+    }
 }
 

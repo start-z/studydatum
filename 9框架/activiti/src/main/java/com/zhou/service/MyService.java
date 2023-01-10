@@ -1,13 +1,17 @@
 package com.zhou.service;
+
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * @author BJB314
+ */
 @Service
 public class MyService {
 
@@ -17,14 +21,18 @@ public class MyService {
     @Autowired
     private TaskService taskService;
 
-	@Transactional
     public void startProcess() {
-        runtimeService.startProcessInstanceByKey("oneTaskProcess");
+        ProcessInstance oneTaskProcess = runtimeService.startProcessInstanceByKey("test");
+        System.out.println("流程定义id：" + oneTaskProcess.getProcessDefinitionId());
+        System.out.println("流程实例id：" + oneTaskProcess.getId());
+        System.out.println("当前活动Id：" + oneTaskProcess.getActivityId());
     }
 
-	@Transactional
     public List<Task> getTasks(String assignee) {
-        return taskService.createTaskQuery().taskAssignee(assignee).list();
+        return taskService.createTaskQuery()
+                .processDefinitionKey("test")
+//                .taskAssignee(assignee)
+                .list();
     }
 
 }
