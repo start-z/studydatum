@@ -20,8 +20,7 @@ public class MyService {
 
     @Autowired
     private TaskService taskService;
-
-    public void startProcess() {
+    public void startProcess(String demo) {
         ProcessInstance oneTaskProcess = runtimeService.startProcessInstanceByKey("test");
         System.out.println("流程定义id：" + oneTaskProcess.getProcessDefinitionId());
         System.out.println("流程实例id：" + oneTaskProcess.getId());

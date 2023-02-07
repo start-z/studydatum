@@ -1,7 +1,5 @@
 package com.activiti6.config;
 
-import javax.sql.DataSource;
-
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.impl.history.HistoryLevel;
 import org.activiti.spring.SpringProcessEngineConfiguration;
@@ -9,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
+
+import javax.sql.DataSource;
 
 /**
  * activiti 配置类
@@ -43,6 +43,5 @@ public class ActivitiConfig {
         configuration.setLabelFontName("宋体");
         configuration.setTransactionManager(transactionManager);
         return configuration;
-
     }
 }

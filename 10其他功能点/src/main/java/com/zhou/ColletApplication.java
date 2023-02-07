@@ -1,5 +1,5 @@
 package com.zhou;
-import com.zhou.config.InitSpring;
+
 import com.zhou.jsoup.JsoupDemo;
 import com.zhou.utils.I18nUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+
 public class ColletApplication{
     public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(ColletApplication.class);
@@ -26,7 +27,7 @@ public class ColletApplication{
     public ApplicationRunner initRunner() {
         JsoupDemo jsoupDemo = new JsoupDemo();
         Class<? extends JsoupDemo> demoClass = jsoupDemo.getClass();
-        String english = i18nUtils.getEnglish("com.zhou.demo");
+        String english = i18nUtils.getEnglish("com.zhou.demo",1,1,1);
         System.out.println("我是国际化::"+english);
         return args -> System.out.println("系统启动成功1");
     }
