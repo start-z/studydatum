@@ -1,6 +1,7 @@
 # 																JVM
 
 ## **1jvm的概述**
+参考地址:https://www.processon.com/view/link/5eea141cf346fb1ae56a44e7
 
 其实就是一台虚拟的计算机，用来执行一系列的操作系统指令，虚拟机可分为系统虚拟机（例如vm）和程序虚拟机（Java技术核心）（执行java的操作命令解析）。
 
