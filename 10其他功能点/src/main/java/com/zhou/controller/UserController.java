@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+/**
+ * 文档测试控制器
+ */
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -24,6 +27,10 @@ public class UserController {
     private ApplicationContext applicationContext;
 
 
+    /**
+     * 线程监听
+     * @return  返回当前用户线程监听
+     */
     @GetMapping("/listener")
     public String listener() {
         System.out.println("controller用户名为" + threadLocalUser.getCurrentUser());
@@ -32,6 +39,11 @@ public class UserController {
         return name + "当前线程的变量值为" + threadLocalUser.local.get() + ";controller";
     }
 
+    /**
+     * 用户登录
+     * @param request  请求体
+     * @return   系统登录成功
+     */
     @GetMapping("/login")
     public String login(HttpServletRequest request) {
         User user = new User("ceshi123", "hello", 20, "123", "https", "123111");
