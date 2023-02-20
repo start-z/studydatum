@@ -6,16 +6,21 @@ import org.springframework.context.event.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.ServletRequestHandledEvent;
 
+import java.lang.reflect.Field;
+
 @Component
 public class MyListener {
 
     @EventListener(classes = com.zhou.event.UserEvent.class)
-    public void getEvent(UserEvent event) throws NoSuchFieldException {
+    public void getEvent(UserEvent event) throws NoSuchFieldException, IllegalAccessException {
         System.out.println("事件监听开始");
-        System.out.println(event.getSource().getClass().getField("name"));
+        Class<?> aClass = event.getSource().getClass();
+        Field field = aClass.getDeclaredField("name");
+        field.setAccessible(true);
+        System.out.println(field.get(event.getSource()));
     }
 
-//    @EventListener(classes = ApplicationEvent.class)
+    //    @EventListener(classes = ApplicationEvent.class)
     public void getListener(ApplicationEvent event) {
         //判断事件为MyEvent时候执行
 //        if(event instanceof MyEvent){

@@ -1,4 +1,4 @@
-package com.activiti6.config;
+package com.zhou.config;
 
 import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.impl.history.HistoryLevel;
