@@ -13,7 +13,7 @@ public class MyListener {
 
     @EventListener(classes = com.zhou.event.UserEvent.class)
     public void getEvent(UserEvent event) throws NoSuchFieldException, IllegalAccessException {
-        System.out.println("事件监听开始");
+        System.out.println("事件监听开始  ");
         Class<?> aClass = event.getSource().getClass();
         Field field = aClass.getDeclaredField("name");
         field.setAccessible(true);

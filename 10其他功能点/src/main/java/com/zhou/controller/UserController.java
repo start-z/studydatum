@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 /**
  * 文档测试控制器
@@ -51,6 +52,16 @@ public class UserController {
         HttpSession session = request.getSession();
         session.setAttribute("loginIn", "true");
         session.setAttribute("userInfo", user);
+        return "系统登陆成功";
+    }
+
+    /**
+     *  自定义注解校验
+     * @param user  测试类
+     * @return  string
+     */
+    @GetMapping("/check")
+    public String login(@Valid User  user) {
         return "系统登陆成功";
     }
 }

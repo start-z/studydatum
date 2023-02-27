@@ -1,18 +1,24 @@
 package com.zhou.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.annotation.Resource;
+
 
 @Configuration
 public class WebFifter implements WebMvcConfigurer {
-    @Autowired
-     private  webConfig webConfig;
+    @Resource
+    private webConfig webConfig;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(webConfig).addPathPatterns("/**").excludePathPatterns("/user/login");
+
+        registry.addInterceptor(webConfig).addPathPatterns("/**").excludePathPatterns(
+                "/user/login",
+                "/user/check"
+        );
     }
 
 }
