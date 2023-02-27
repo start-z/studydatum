@@ -62,6 +62,7 @@ public class UserController {
      */
     @GetMapping("/check")
     public String login(@Valid User  user) {
-        return "系统登陆成功";
+
+        return user.toString();
     }
 }
