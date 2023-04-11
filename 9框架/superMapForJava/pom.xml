@@ -9,14 +9,25 @@
     </parent>
     <groupId>com.zhou</groupId>
     <artifactId>superMapForJava</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>superMapForJava</name>
-    <description>superMapForJava</description>
+    <version>1.0</version>
+    <name>studySuperMapForJava</name>
+    <description>本文以学习supermapForJava为主</description>
     <properties>
         <java.version>8</java.version>
         <fastjson.version>1.2.76</fastjson.version>
     </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>

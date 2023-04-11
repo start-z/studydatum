@@ -1,0 +1,20 @@
+server:
+  port: 10022
+
+knife4j:
+  enable: true
+  openapi:
+    title: superMap学习文档
+    description: "`我是测试`,**你知道吗**
+    # aaa"
+    email: null
+    concat: superMap
+    url: localhost:10022/doc.html
+    version: v1.0
+    license: Apache 2.0
+    license-url: superMap
+    terms-of-service-url: superMap
+  basic:
+    username: admin
+    password: admin
+    enable: true
