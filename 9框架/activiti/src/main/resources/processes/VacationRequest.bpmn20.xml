@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn"
-             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
-             xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
-             typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
-             targetNamespace="http://www.activiti.org/processdef">
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/processdef">
   <process id="10010011" name="请假流程" isExecutable="true">
     <documentation>请假流程</documentation>
     <startEvent id="sid-02caa80f-7836-440a-b698-06542eb51ca7">
@@ -27,7 +23,7 @@
   <bpmndi:BPMNDiagram id="BPMNDiagram_test">
     <bpmndi:BPMNPlane bpmnElement="10010011" id="BPMNPlane_test">
       <bpmndi:BPMNShape id="shape-929d7e15-946d-4ab6-b98c-2a27ccf2e063" bpmnElement="sid-02caa80f-7836-440a-b698-06542eb51ca7">
-        <omgdc:Bounds x="0.0" y="-115.0" width="30.0" height="30.0"/>
+        <omgdc:Bounds x="5.0" y="-130.0" width="30.0" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="shape-e778224e-e282-42be-810c-2dcf42d1b132" bpmnElement="sid-62606fff-02d7-4c5c-8ee4-1d18492ca78c">
         <omgdc:Bounds x="-25.0" y="-55.0" width="100.0" height="80.0"/>
@@ -39,7 +35,7 @@
         <omgdc:Bounds x="10.0" y="155.0" width="30.0" height="30.0"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="edge-5cb9b216-15fa-4903-a614-fcf817e3668f" bpmnElement="sid-b7dddc78-de27-49f8-a51f-0e235c280285">
-        <omgdi:waypoint x="22.5" y="-85.0"/>
+        <omgdi:waypoint x="27.5" y="-100.0"/>
         <omgdi:waypoint x="25.0" y="-55.0"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="edge-64be6f3b-9422-4500-813f-bdc5341422f2" bpmnElement="sid-4cce2718-f81b-439d-a69c-1f786f5845e9">
