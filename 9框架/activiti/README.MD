@@ -1,9 +1,17 @@
 
 
-# activiti学习之路
+# activiti6.0.0
 
->本文记录activiti的学习过程及其对应api
-> 学习地址:https://www.activiti.org/userguide/#demo.setup.one.minute.version
+相关参阅文档:
+
+> 1、activiti官网教程：https://www.activiti.org/userguide/#_introduction。
+> 2、activitiAPI文档：https://www.activiti.org/javadocs/。
+
+友情提示:
+
+> activiti全文没有国际化，查看文档时可采用chorme的翻译。
+>
+> 本文只是记录了activiti的官网基本学习过程及其对应API，先熟悉一下这个框架最基本的内容，请以自己的实战项目为准。
 
 ## 1示例入门程序
 
@@ -64,6 +72,7 @@
 ```
 创建配置文件(详解activiti官网第三章)
 本文讲述spring集成activiti编程时配置
+
 ```aidl
 package com.activiti6.config;
 
@@ -198,7 +207,7 @@ public class ActivitiConfig {
         RepositoryService repositoryService = processEngine.getRepositoryService();
         Deployment deploy = repositoryService
                 .createDeployment()
-                .addClasspathResource("processes/test.bpmn20.xml")
+                .addClasspathResource("processes/VacationRequest.bpmn20.xml")
                 .deploy();
         System.out.println(deploy + " 创建成功");
     }
@@ -373,6 +382,12 @@ public class MyBusinessProcessTest {
 - 通过运行时服务启动流程实例时
 - 完成任务时
 - 调用*runtimeService.trigger*方法时
+
+
+
+注：xml流程节点图形及功能不再介绍，请自行查阅观看。
+
+
 
 
 
