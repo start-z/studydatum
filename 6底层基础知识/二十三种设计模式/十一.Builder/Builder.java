@@ -12,7 +12,7 @@ public class Builder {
     /**
      * 使用构建者模式
      */
-    public static class DesignBuilder {
+    public static class DessignBuilder {
         public void tester() {
             MealBuilder mealBuilder = new MealBuilder();
 
