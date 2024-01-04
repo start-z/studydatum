@@ -25,12 +25,10 @@ public class SecurtityServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("我是测试方法");
-        String encode = bCryptPasswordEncoder.encode("123");
-        bCryptPasswordEncoder.upgradeEncoding("123");
         com.zhou.entity.User one = userService.getOne(new QueryWrapper<com.zhou.entity.User>().eq("username", username));
         if (null != one) {
             List<GrantedAuthority> authorities = new ArrayList<>();
-            authorities.add(new JaasGrantedAuthority("USER", new PrincipalImpl(one.getUsername())));
+            authorities.add(new JaasGrantedAuthority("ROLE_USER", new PrincipalImpl(one.getUsername())));
             return new User(one.getUsername(), one.getPassword(), authorities);
         }
         return null;

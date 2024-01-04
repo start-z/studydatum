@@ -15,8 +15,11 @@ public class OomMain {
 
     public static void main(String[] args) throws Exception {
         List<ByteBuffer> list = new ArrayList<>();
-        // 分配 20MB
-        list.add(ByteBuffer.allocateDirect(_10MB));
-        list.add(ByteBuffer.allocateDirect(_10MB));
+//        // 分配 20MB
+//        list.add(ByteBuffer.allocateDirect(_10MB));
+//        list.add(ByteBuffer.allocateDirect(_10MB));
+        while (true){
+            list.add(ByteBuffer.allocateDirect(10 * 1024));
+        }
     }
 }

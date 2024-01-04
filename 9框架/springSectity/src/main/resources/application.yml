@@ -7,7 +7,7 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: zhou
     password: qq1719351997
-    url: jdbc:mysql://localhost:3306/activiti?useSSL=false&amp&useUnicode=true&amp&characterEncoding=utf8&serverTimezone=UTC&nullCatalogMeansCurrent=true
+    url: jdbc:mysql://localhost:3306/test1?useSSL=false&amp&useUnicode=true&amp&characterEncoding=utf8&serverTimezone=UTC&nullCatalogMeansCurrent=true
   activiti:
     check-process-definitions: false
     db-identity-used: false
