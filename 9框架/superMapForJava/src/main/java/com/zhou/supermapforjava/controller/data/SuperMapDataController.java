@@ -2,6 +2,7 @@ package com.zhou.supermapforjava.controller.data;
 
 import com.alibaba.fastjson.JSONObject;
 import com.supermap.data.*;
+import com.zhou.supermapforjava.utils.SuperMapDataUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,12 +41,16 @@ public class SuperMapDataController {
         Workspace workspace = new Workspace();
         DatasourceConnectionInfo datasourceconnection = new DatasourceConnectionInfo();
         // 设置 SQL 数据源连接需要的参数
-        datasourceconnection.setServer(url);
-        datasourceconnection.setEngineType(EngineType.OGC);
-        datasourceconnection.setAlias("测试数据源");
-        datasourceconnection.setServer("TMS");
-        Datasource open = workspace.getDatasources().open(datasourceconnection);
-        return open;
+        Datasource datasource = SuperMapDataUtils.builder().connecttionDb(workspace, datasourceconnection);
+        //功能实现一 --查询行政区划(adcode)为410100的面数据
+        DatasetVector datasetVector = (DatasetVector)datasource.getDatasets().get("T1");
+        QueryParameter parameter = new QueryParameter();
+        parameter.setAttributeFilter("smlibtileid=1");
+//        parameter.setAttributeFilter("adcode=410100");
+        parameter.setCursorType(CursorType.STATIC);
+        Recordset query = datasetVector.query(parameter);
+        SuperMapDataUtils.builder().dispose(workspace,datasourceconnection);
+        return query;
 
     }
 

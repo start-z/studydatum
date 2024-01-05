@@ -25,16 +25,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/home")
                 .hasRole("USER")
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/home")
-                .failureUrl("/hello")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
-        http.csrf();
-
+                .csrf();
     }
 
     @Override
