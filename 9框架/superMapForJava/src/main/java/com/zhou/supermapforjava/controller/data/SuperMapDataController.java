@@ -1,13 +1,23 @@
 package com.zhou.supermapforjava.controller.data;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.supermap.data.*;
+import com.vividsolutions.jts.io.ParseException;
+import com.zhou.supermapforjava.utils.R;
+import com.zhou.supermapforjava.utils.ShapeUtil;
 import com.zhou.supermapforjava.utils.SuperMapDataUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.HashMap;
 
 /**
  * @author zhou
@@ -36,22 +46,112 @@ public class SuperMapDataController {
         boolean forward = CoordSysTranslator.forward(point2Ds, prjCoordSys);
         return JSONObject.toJSONString(prjCoordSys);
     }
-    @GetMapping("/getWebRestData")
+
+    @GetMapping("/queryGeometry")
     public Object getWebRestData(String url) {
         Workspace workspace = new Workspace();
         DatasourceConnectionInfo datasourceconnection = new DatasourceConnectionInfo();
         // 设置 SQL 数据源连接需要的参数
         Datasource datasource = SuperMapDataUtils.builder().connecttionDb(workspace, datasourceconnection);
         //功能实现一 --查询行政区划(adcode)为410100的面数据
-        DatasetVector datasetVector = (DatasetVector)datasource.getDatasets().get("T1");
+        DatasetVector datasetVector = (DatasetVector) datasource.getDatasets().get("T1");
         QueryParameter parameter = new QueryParameter();
         parameter.setAttributeFilter("smlibtileid=1");
 //        parameter.setAttributeFilter("adcode=410100");
         parameter.setCursorType(CursorType.STATIC);
         Recordset query = datasetVector.query(parameter);
-        SuperMapDataUtils.builder().dispose(workspace,datasourceconnection);
-        return query;
+        JSONArray res = new JSONArray();
+        while (!query.isEOF()) {
+            Feature feature = query.getFeature();
+            HashMap<String, Object> hashMap = new HashMap<>();
+            hashMap.put("smid", String.valueOf(feature.getID()));
+            hashMap.put("geomerty", Toolkit.GeometryToGeoJson(feature.getGeometry()));
+            res.add(hashMap);
+            query.moveNext();
+        }
 
+        SuperMapDataUtils.builder().dispose(workspace, datasourceconnection);
+        query.dispose();
+        return res;
+
+    }
+
+    @PostMapping("/shpInsertDb")
+    @ApiOperation(("shp文件数据入库、计算面积(api练习)"))
+    public R shpInsertDb(@RequestParam("file") MultipartFile file) throws IOException, ParseException {
+        JSONObject res = new JSONObject();
+        // io拷贝
+        File temporartFile = new File("C:\\Users\\BJB-314\\Desktop\\湖南省\\hunan.shp");
+        IOUtils.copy(file.getInputStream(), new FileOutputStream(temporartFile));
+        JSONArray array = ShapeUtil.readShpFile(temporartFile.getAbsolutePath());
+        temporartFile.delete();
+
+        // 创建连接
+        Workspace workspace = new Workspace();
+        DatasourceConnectionInfo info = new DatasourceConnectionInfo();
+        Datasource datasource = SuperMapDataUtils.builder().connecttionDb(workspace, info);
+
+        //1数据入库(字段添加)
+//        this.shpInsertDb(datasource, array);
+
+        //2删除数据集
+//        this.deleteDataDb(datasource, "T1", "smid=13");
+
+        //3计算面积
+        String area = this.getArea(array);
+        res.put("area",area);
+
+        SuperMapDataUtils.builder().dispose(workspace, info);
+
+        return R.data(res);
+    }
+
+    /**
+     * 根据wktjson数据获取面数据
+     * @param array
+     */
+    private String getArea(JSONArray array) {
+        BigDecimal init = new BigDecimal("0.00");
+        for (int i = 0; i < array.size(); i++) {
+            String theGeom = array.getJSONObject(i).getString("the_geom");
+            GeoRegion geoRegion = (GeoRegion)Toolkit.WKTToGeometry(theGeom);
+            init = init.add(BigDecimal.valueOf(geoRegion.getArea()));
+        }
+        return init.toString();
+    }
+
+    /**
+     * 数据入库
+     *
+     * @param datasource 数据集
+     * @param array      入库的数据
+     */
+    public void shpInsertDb(Datasource datasource, JSONArray array) {
+        DatasetVectorInfo hunan = new DatasetVectorInfo("hunan", DatasetType.REGION);
+        DatasetVector datasetVector = datasource.getDatasets().create(hunan);
+        datasetVector.getFieldInfos().add(new FieldInfo("ceshi", FieldType.INT32));
+        Recordset recordset2 = datasetVector.getRecordset(false, CursorType.DYNAMIC);
+        for (int i = 0; i < array.size(); i++) {
+            HashMap<String, Object> map = new HashMap<>(16);
+            map.put("ceshi", i);
+            String theGeom = array.getJSONObject(i).getString("the_geom");
+            Geometry geometry = Toolkit.WKTToGeometry(theGeom);
+            recordset2.addNew(geometry, map);
+            recordset2.update();
+        }
+        hunan.dispose();
+        recordset2.dispose();
+    }
+    /**
+     * 删除数据集
+     */
+    public void deleteDataDb(Datasource datasource, String layerName, String condition) {
+        DatasetVector datasetVector1 = (DatasetVector) datasource.getDatasets().get(layerName);
+        Recordset recordset1 = datasetVector1.query(condition, CursorType.DYNAMIC);
+        recordset1.deleteAll();
+        recordset1.update();
+        recordset1.dispose();
+        recordset1.dispose();
     }
 
 
