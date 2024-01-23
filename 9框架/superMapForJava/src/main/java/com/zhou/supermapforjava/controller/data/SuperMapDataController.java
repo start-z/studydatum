@@ -98,8 +98,10 @@ public class SuperMapDataController {
 //        this.deleteDataDb(datasource, "T1", "smid=13");
 
         //3计算面积
-        String area = this.getArea(array);
-        res.put("area",area);
+//        String area = this.getArea(array);
+//        res.put("area",area);
+
+
 
         SuperMapDataUtils.builder().dispose(workspace, info);
 
