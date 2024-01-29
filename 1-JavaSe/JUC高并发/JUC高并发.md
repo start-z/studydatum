@@ -63,7 +63,7 @@ JUC是关于线程的，存放在java.util.concurent包下。这是一个处理�
 
 买票案例:
 
-```
+```java
     private static int TICKET = 30;
 
     public static void main(String[] args) {
@@ -97,7 +97,9 @@ JUC是关于线程的，存放在java.util.concurent包下。这是一个处理�
      */
     public synchronized static void salesofTickets() {
         if (TICKET > 0) {
-            System.out.println(Thread.currentThread().getName() + "卖出了票还剩下" + TICKET--);
+            System.out.println(Thread.currentThread().getName() + "卖出了票还剩下" + --TICKET);
+        }else{
+            System.out.println("票已卖完");
         }
 
     }

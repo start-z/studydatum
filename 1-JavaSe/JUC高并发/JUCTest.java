@@ -8,28 +8,19 @@ public class JUCTest {
     private static int TICKET = 30;
 
     public static void main(String[] args) {
-        new Thread(() -> {
-            while (TICKET != 0) {
-                salesofTickets();
-                try {
-                    Thread.sleep(2000l);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        for (int i = 0; i < 3; i++) {
+            new Thread(() -> {
+                while (TICKET != 0) {
+                    salesofTickets();
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
 
-        }, "AA").start();
-        new Thread(() -> {
-            while (TICKET != 0) {
-                salesofTickets();
-            }
-        }, "bb").start();
-        new Thread(() -> {
-            while (TICKET != 0) {
-                salesofTickets();
-            }
-
-        }, "cc").start();
+            }, String.valueOf(i)).start();
+        }
     }
 
 
@@ -38,12 +29,11 @@ public class JUCTest {
      */
     public synchronized static void salesofTickets() {
         if (TICKET > 0) {
-            System.out.println(Thread.currentThread().getName() + "卖出了票还剩下" + TICKET--);
+            System.out.println(Thread.currentThread().getName() + "卖出了票还剩下" + --TICKET);
+        }else{
+            System.out.println("票已卖完");
         }
-
     }
-
-
     /**
      * 用户线程和守护线程
      */

@@ -5,7 +5,6 @@
  */
 
 
-import java.util.ArrayList;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -18,9 +17,7 @@ public class Asyc {
     }
 
     public static void asycVoid() {
-        ArrayList
         CompletableFuture.runAsync(() -> {
-ThreadLocal
             System.out.println(Thread.currentThread().getName() + "cccccc");
         });
     }
