@@ -16,13 +16,11 @@ RUN tar -zxvf nginx-1.24.0.tar.gz -C . \
     && tar -zxvf jdk-8u401-linux-x64.tar.gz -C . \
     &&    yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel pcre-devel vim  \
     &&  rm  ./nginx-1.24.0.tar.gz \
-    &&  rm  ./jdk-8u401-linux-x64.tar.gz
-
-RUN  echo "解压文件成功"
-
-RUN  cd nginx-1.24.0    \
-     && ./configure --prefix=/usr/local/nginx \
-     && make && make install
+    &&  rm  ./jdk-8u401-linux-x64.tar.gz \
+    &&  echo "解压文件成功" \
+    &&  cd nginx-1.24.0    \
+    && ./configure --prefix=/usr/local/nginx \
+    && make && make install
 
 #设置java环境变量
 ENV JAVA_HOME /usr/local/jdk1.8.0_401
