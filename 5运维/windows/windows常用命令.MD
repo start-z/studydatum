@@ -4,7 +4,7 @@
 
 相关官网学习地址：https://learn.microsoft.com/zh-cn/windows-server/administration/windows-commands/cd
 
-本文章命令顺序是根据命令字母排序。
+本文章命令顺序是根据官网命令字母排序。
 
 ## 2、常用命令
 
@@ -1093,4 +1093,4 @@ type 2.txt
 
 ### 结语
 
-本文只是列举出可能工作中会用的指令。
+本文只是列举出工作中可能会用的指令。
