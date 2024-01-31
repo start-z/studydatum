@@ -1099,6 +1099,29 @@ type 2.txt
 timeout /t 3s 暂停3s
 ```
 
+### 2.41 goto
+
+将 cmd.exe 定向到批处理程序中的标记行。 在批处理程序中，此命令将命令处理定向到由标签标识的行。 找到标签后，继续处理，从下一行开始的命令开始。
+
+(可以搭配if做while循环)
+
+示例如下：
+
+```
+:while_loop
+set /p username="请输入你的名字"
+echo %username%
+if %username% == zhou (
+echo 输入正确
+echo cmd窗口将在3秒后关闭
+timeout /t 3
+exit
+) else (
+echo 输入错误 
+goto :while_loop
+ )
+```
+
 
 
 ### 结语
