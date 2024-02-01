@@ -13,7 +13,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class SyncList {
     public static void main(String[] args) {
         KeChong keChong = new KeChong();
-        keChong.showKeCongLock();
+        new Thread(keChong::showKeCongLock, "测试1").start();
+        new Thread(keChong::showKeCongLock, "测试2").start();
     }
 
 
@@ -24,29 +25,32 @@ public class SyncList {
         public void showKeCongLock() {
             lock.lock();
             try {
-
-                new Thread(() -> {
+                try {
+                    // 第一次上锁
+                    lock.lock();
+                    System.out.println(Thread.currentThread().getName() + "临界点");
                     try {
+                        // 第二次上锁
                         lock.lock();
-                        System.out.println("我是外层");
-                        try {
-                            lock.lock();
-                            System.out.println("我是中层");
+                        System.out.println(Thread.currentThread().getName() + "我是中层");
 
-                            try {
-                                lock.lock();
-                                System.out.println("我是内层");
-                            } finally {
-                                lock.unlock();
-                            }
+                        try {
+                            // 第三次上锁
+                            lock.lock();
+                            System.out.println(Thread.currentThread().getName() + "我是内层");
                         } finally {
+                            // 第三次解锁
                             lock.unlock();
                         }
-
                     } finally {
-                        lock.unlock();
+                        //第二次解锁
+//                        lock.unlock();
                     }
-                }).start();
+
+                } finally {
+                    //第一次解锁
+                    lock.unlock();
+                }
             } finally {
                 lock.unlock();
             }

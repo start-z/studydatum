@@ -41,6 +41,7 @@ public class ForkJoin {
 
         @Override
         protected Integer compute() {
+            System.out.println("我被拆分了"+Thread.currentThread().getName());
             if (end - begin <= VALUE) {
                 for (Integer i = begin; i <= end; i++) {
                     //直接计算

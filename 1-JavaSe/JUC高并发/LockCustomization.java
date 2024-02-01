@@ -44,7 +44,7 @@ public class LockCustomization {
         lock.lock();  //上锁
         try {
         while (flag != 1) {
-            Condition1.wait();
+            Condition1.await();
         }
 
             for (int i = 0; i < 5; i++) {
@@ -63,7 +63,7 @@ public class LockCustomization {
         lock.lock();  //上锁
         try {
             while (flag != 2) {
-                Condition2.wait();
+                Condition2.await();
             }
             for (int i = 0; i < 10; i++) {
                 System.out.println(Thread.currentThread().getName() + "开始打印");
@@ -81,7 +81,7 @@ public class LockCustomization {
         lock.lock();  //上锁
         try {
             while (flag != 3) {
-                Condition3.wait();
+                Condition3.await();
             }
             for (int i = 0; i < 15; i++) {
                 System.out.println(Thread.currentThread().getName() + "开始打印");

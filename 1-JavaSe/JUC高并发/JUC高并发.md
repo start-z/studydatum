@@ -181,7 +181,7 @@ public class LockCustomization {
         lock.lock();  //上锁
         try {
         while (flag != 1) {
-            Condition1.wait();
+            Condition1.await();
         }
 
             for (int i = 0; i < 5; i++) {
@@ -200,7 +200,7 @@ public class LockCustomization {
         lock.lock();  //上锁
         try {
             while (flag != 2) {
-                Condition2.wait();
+                Condition2.await();
             }
             for (int i = 0; i < 10; i++) {
                 System.out.println(Thread.currentThread().getName() + "开始打印");
@@ -218,7 +218,7 @@ public class LockCustomization {
         lock.lock();  //上锁
         try {
             while (flag != 3) {
-                Condition3.wait();
+                Condition3.await();
             }
             for (int i = 0; i < 15; i++) {
                 System.out.println(Thread.currentThread().getName() + "开始打印");
@@ -331,6 +331,8 @@ synchronized锁实现同步的基础：java中每一个对象都可以作为锁
 
 例如进入家里  我们只需要打开家门的锁就可以自由进入家里面的房间就叫做**可重入锁**。
 
+可重入锁的意思就是一把锁可以无限次的上次，每次上锁锁的计数加一 如果线程上次的次数多余解锁的次数就会导致线程死锁或者其他并发问题。
+
 synchronized和lock都是可重入锁
 
 synchronized代码示例如下：
@@ -340,6 +342,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author zhouhelong
@@ -349,14 +353,49 @@ import java.util.UUID;
 public class SyncList {
     public static void main(String[] args) {
         KeChong keChong = new KeChong();
-        keChong.showKeCongSync();
+        new Thread(keChong::showKeCongLock, "测试1").start();
+        new Thread(keChong::showKeCongLock, "测试2").start();
     }
 
 
-    
-    
     public static class KeChong {
         private Object o = new Object();
+        private Lock lock = new ReentrantLock();
+
+        public void showKeCongLock() {
+            lock.lock();
+            try {
+                try {
+                    // 第一次上锁
+                    lock.lock();
+                    System.out.println(Thread.currentThread().getName() + "临界点");
+                    try {
+                        // 第二次上锁
+                        lock.lock();
+                        System.out.println(Thread.currentThread().getName() + "我是中层");
+
+                        try {
+                            // 第三次上锁
+                            lock.lock();
+                            System.out.println(Thread.currentThread().getName() + "我是内层");
+                        } finally {
+                            // 第三次解锁
+                            lock.unlock();
+                        }
+                    } finally {
+                        //第二次解锁(如果取消这里的解锁就会导致锁的计数不为0,于是在运行代码时就会出现死锁的情况)
+//                        lock.unlock();
+                    }
+
+                } finally {
+                    //第一次解锁
+                    lock.unlock();
+                }
+            } finally {
+                lock.unlock();
+            }
+        }
+
 
         /**
          * sync可重入锁  并且会自动释放锁
@@ -400,6 +439,7 @@ public class SyncList {
     }
 
 }
+
 
 ```
 
@@ -601,19 +641,22 @@ public class CountDownlatchDemo {
 代码如下：
 
 ```
-public static void CyclibarrierDemo() {
+   /**
+     * 栅格计数  满足指定条件后输出
+     */
+    public static void CyclibarrierDemo() {
         CyclicBarrier cyclicBarrier = new CyclicBarrier(7, () -> {
-            System.out.println("七龙珠");
+            System.out.println("已经集齐了七龙珠");
         });
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 1; i <= 7; i++) {
             new Thread(() -> {
-                System.out.println(Thread.currentThread().getName() + "得到了龙珠");
+                String name = Thread.currentThread().getName();
+                System.out.println(name + "得到了龙珠");
                 try {
+                    System.out.println(name + "到达了屏障点,等待其他人员获取龙珠");
                     cyclicBarrier.await();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (BrokenBarrierException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }, String.valueOf(i)).start();
@@ -634,22 +677,28 @@ public static void CyclibarrierDemo() {
 代码如下：
 
 ```
-    public static void SemaphoreDemo() {
+      public static void SemaphoreDemo() {
         Semaphore semaphore = new Semaphore(3);//三个车位
         for (int i = 0; i < 6; i++) {
             new Thread(() -> {
+                String threadName = Thread.currentThread().getName();
                 try {
-                    semaphore.acquire();//发放许可证
-                System.out.println(Thread.currentThread().getName() + "得到了车位");
-                    TimeUnit.SECONDS.sleep(4);//停车4秒后离开
-                    System.out.println(Thread.currentThread().getName() + "----------离开了车位");
+                    if (semaphore.tryAcquire(1, 8, TimeUnit.SECONDS)) {
+                        System.out.println(threadName + "得到了车位");//发放许可证
+                        try {
+                            TimeUnit.SECONDS.sleep(4);//停车4秒后离开
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        semaphore.release();//释放车位
+                        System.out.println(threadName + "----------离开了车位");
+                    } else {
+                        System.out.println(threadName + "来到了停车场,等待8s申请停车资格发现没有直接跑路");
+                    }
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                }finally {
-                    semaphore.release();//释放车位
                 }
             }, String.valueOf(i)).start();
-
         }
 
     }
@@ -673,7 +722,7 @@ public static void CyclibarrierDemo() {
 
 都会产生死锁
 
-读写锁：一个资源可以被多个线程访问，但是不可能同时出现读写操作。
+读写锁：一个资源可以被多个线程访问，但是不可能同时出现多线程又读又写的操作。
 
 锁降级：将写入锁降低为读锁。
 
@@ -736,33 +785,51 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
  */
 public class ReadWrite {
     public static void main(String[] args) {
-        demotion();
+        demotion(false);
     }
 
     /**
      * 读写锁降级
      */
-    public static void demotion() {
+    public  static void demotion(Boolean  isTest) {
         ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
         ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
         ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
         int i = 1;
-        //读
-        readLock.lock();
 
-        System.out.println("我在读");
-        //写上锁
-        writeLock.lock();
-        i++;
-        System.out.println(i);
-        //释放写锁
-        writeLock.unlock();
-        //释放读锁
-        readLock.unlock();
+        // 锁降级  在有写锁的情况下还能加上读锁
+        if (!isTest){
+
+            //写
+            writeLock.lock();
+            i++;
+            System.out.println("我在写");
+            //读上锁
+            readLock.lock();
+            System.out.println(i);
+            //释放写锁
+            writeLock.unlock();
+            //释放读锁
+            readLock.unlock();
+        }else {
+            //读  可以看到执行这里由于没有获取到解锁-读锁所以导致线程死锁 没有输出i
+            readLock.lock();
+            i++;
+            System.out.println("我在读");
+            //写上锁
+            writeLock.lock();
+            System.out.println(i);
+            //释放写锁
+            writeLock.unlock();
+            //释放读锁
+            readLock.unlock();
+        }
+
     }
 
 
 }
+
 
 ```
 
