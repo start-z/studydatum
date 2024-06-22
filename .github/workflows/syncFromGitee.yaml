@@ -1,8 +1,9 @@
 name: Sync from Gitee
 
 on:
-  repository_dispatch:
-    types: [gitee_sync]
+   push:
+    branches:
+      - master
 
 jobs:
   sync:
