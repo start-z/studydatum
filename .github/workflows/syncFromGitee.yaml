@@ -1,9 +1,8 @@
 name: Sync from Gitee
 
 on:
-  push:
-    branches:
-      - master  # 可以根据需要修改为你的默认分支
+  repository_dispatch:
+    types: [gitee_sync]
 
 jobs:
   sync:
