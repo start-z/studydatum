@@ -1,9 +1,8 @@
 name: Sync from Gitee
 
 on:
-  push:
-    branches:
-      - master  # 可以根据需要修改为你的默认分支
+  repository_dispatch:
+    types: [gitee_sync]
 
 jobs:
   sync:
@@ -18,10 +17,11 @@ jobs:
           git remote add gitee https://gitee.com/superstudy1/study-datum.git
           git pull gitee master --tags
         env:
-          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+          GITEE_TOKEN: ${{ secrets.ACTIONTOKEN }}
 
       - name: Push to GitHub
         run: |
           git push origin master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONTOKEN }}
+#nihao
