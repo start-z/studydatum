@@ -16,7 +16,8 @@ jobs:
       - name: Pull from Gitee
         run: |
           git remote add gitee https://gitee.com/superstudy1/study-datum.git
-          git pull gitee master --tags
+          git fetch gitee
+          git merge gitee/master --allow-unrelated-histories
         env:
           GITEE_TOKEN: ${{ secrets.ACTIONTOKEN }}
 
