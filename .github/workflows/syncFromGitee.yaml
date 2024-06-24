@@ -1,8 +1,9 @@
 name: Sync from Gitee
 
 on:
-  repository_dispatch:
-    types: [gitee_sync]
+  push:
+    branches:
+      - master
 
 jobs:
   sync:
@@ -12,16 +13,34 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "startz"
+          git config --global user.email "1719351997@qq.com"
+
       - name: Pull from Gitee
+        id: pull
         run: |
           git remote add gitee https://gitee.com/superstudy1/study-datum.git
-          git pull gitee master --tags
+          git fetch gitee
+          git merge gitee/master --allow-unrelated-histories
         env:
           GITEE_TOKEN: ${{ secrets.ACTIONTOKEN }}
+        continue-on-error: true
+
+      - name: Check for merge conflicts
+        if: steps.pull.outcome == 'failure'
+        run: echo "Merge conflicts detected"
+
+      - name: Resolve merge conflicts
+        if: steps.pull.outcome == 'failure'
+        run: |
+          git merge --strategy-option theirs --allow-unrelated-histories
+          git add .
+          git commit -m "Resolved merge conflicts"
 
       - name: Push to GitHub
         run: |
           git push origin master
         env:
           GITHUB_TOKEN: ${{ secrets.ACTIONTOKEN }}
-#nihao
