@@ -30,6 +30,6 @@ jobs:
 
       - name: Push to GitHub
         run: |
-          git push origin master
+          git push https://start-z:${{secrets.ACTIONTOKEN}}@github.com/start-z/studydatum.git master
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
