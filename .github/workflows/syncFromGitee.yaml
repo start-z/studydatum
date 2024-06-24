@@ -31,7 +31,7 @@ jobs:
       - name: Push to GitHub
         run: |
           echo ${{ secrets.ACTIONTOKEN }}
-          git remote set-url origin https://${{ secrets.ACTIONTOKEN }}@github.com/start-z/studydatum.git
+          git remote set-url origin https://github.com/start-z/studydatum.git
           git push origin master
         env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONTOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
