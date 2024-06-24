@@ -1,6 +1,8 @@
 name: Sync from Gitee
 
-on: repository_dispatch
+on:
+  repository_dispatch:
+    types: [syncFromGitee]
 jobs:
   sync:
     runs-on: ubuntu-latest
