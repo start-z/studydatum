@@ -13,6 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Configure Git
+        run: |
+          git config --global user.name "startz"
+          git config --global user.email "1719351997@qq.com"
+
       - name: Pull from Gitee
         run: |
           git remote add gitee https://gitee.com/superstudy1/study-datum.git
