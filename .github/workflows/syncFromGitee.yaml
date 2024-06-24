@@ -30,7 +30,6 @@ jobs:
 
       - name: Push to GitHub
         run: |
-          echo ${{GITHUB_TOKEN}}
           git push origin master
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
