@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Configure Git
         run: |
-          git config --global user.name "start-z"
-          git config --global user.email "1719351997@qq.com"
+          git config --local user.name "start-z"
+          git config --local user.email "1719351997@qq.com"
 
       - name: Pull from Gitee
         id: pull
@@ -30,6 +30,4 @@ jobs:
 
       - name: Push to GitHub
         run: |
-          git push https://start-z:${{secrets.ACTIONTOKEN}}@github.com/start-z/studydatum.git master
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+          git push
