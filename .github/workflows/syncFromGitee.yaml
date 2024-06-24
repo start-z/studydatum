@@ -25,7 +25,7 @@ jobs:
           git fetch gitee
           git merge -Xtheirs gitee/master
         env:
-          GITEE_TOKEN: ${{ secrets.ACTIONTOKEN }}
+          GITEE_TOKEN: ${{ secrets.GITEETOKEN }}
         continue-on-error: true
 
       - name: Push to GitHub
