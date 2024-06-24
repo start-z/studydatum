@@ -1,10 +1,10 @@
 name: Sync from Gitee
 
 on:
-  push:
+   push:
     branches:
       - master
-# 1
+
 jobs:
   sync:
     runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
         run: |
           git config --global user.name "startz"
           git config --global user.email "1719351997@qq.com"
-
+          
       - name: Pull from Gitee
         id: pull
         run: |
@@ -27,7 +27,7 @@ jobs:
         env:
           GITEE_TOKEN: ${{ secrets.ACTIONTOKEN }}
         continue-on-error: true
-
+        
       - name: Check for merge conflicts
         if: steps.pull.outcome == 'failure'
         run: echo "Merge conflicts detected"
@@ -43,4 +43,4 @@ jobs:
         run: |
           git push origin master
         env:
-          GITHUB_TOKEN: ${{ secrets.ACTIONTOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACTIONTOKEN }} 
