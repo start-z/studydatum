@@ -10,8 +10,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.ACTIONTOKEN }}
 
       - name: Configure Git
         run: |
@@ -19,14 +17,10 @@ jobs:
           git config --local user.email "1719351997@qq.com"
 
       - name: Pull from Gitee
-        id: pull
         run: |
           git remote add gitee https://gitee.com/superstudy1/study-datum.git
           git fetch gitee
           git merge -Xtheirs gitee/master --allow-unrelated-histories
-        env:
-          GITEE_TOKEN: ${{ secrets.ACTIONTOKEN }}
-        continue-on-error: true
 
       - name: Push to GitHub
         run: |
