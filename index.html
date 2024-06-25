@@ -7,9 +7,13 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
-
+    <script src="jquery-3.7.1.js"></script>
+    <script src="./script.js"></script>
 </head>
 <body>
+<nav>
+    <a onclick="script()" style="cursor: pointer">脚本</a>
+</nav>
   <div id="app"></div>
   <script>
     window.$docsify = {
@@ -46,5 +50,17 @@
   </script>
   <!-- Docsify v4 -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+<script>
+    function script() {
+        let inputValue = prompt('请输入执行的脚本');
+        if (inputValue !== null) {
+            for (let item of scriptArray) {
+                if (item.name === inputValue) {
+                    item.methods();
+                }
+            }
+        }
+    }
+</script>
 </body>
 </html>
