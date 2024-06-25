@@ -21,7 +21,7 @@ jobs:
         run: |
           git remote add gitee https://gitee.com/superstudy1/study-datum.git
           git fetch gitee
-          git merge -Xtheirs gitee/master
+          git merge -Xtheirs gitee/master --allow-unrelated-histories
         env:
           GITEE_TOKEN: ${{ secrets.ACTIONTOKEN }}
         continue-on-error: true
