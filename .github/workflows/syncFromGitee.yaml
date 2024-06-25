@@ -17,11 +17,10 @@ jobs:
           git config --local user.email "1719351997@qq.com"
 
       - name: Pull from Gitee
-        id: pull
         run: |
           git remote add gitee https://gitee.com/superstudy1/study-datum.git
           git fetch gitee
-          git merge -Xtheirs gitee/master
+          git merge -Xtheirs gitee/master --allow-unrelated-histories
 
       - name: Push to GitHub
         run: |
