@@ -7,5 +7,5 @@
 - 简单
 - 完整链路
 
-[GitHub](https://github.com/docsifyjs/docsify/)
+[GITEE](https://gitee.com/superstudy1/study-datum)
 [Get Started](README.md)
