@@ -11,7 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          - token: ${{ secrets.ACTIONTOKEN }}
+          token: ${{ secrets.ACTIONTOKEN }}
 
       - name: Configure Git
         run: |
