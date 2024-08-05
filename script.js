@@ -5,7 +5,7 @@ const scriptArray = [
             let params = {
                 "event_type": "syncFromGitee"
             }
-            let auth = 'ghp_aaYUIOZVCY2Omp[aa]MvSHtN3[c71o]k9rKH[bb]59CE1Aemsf'
+            let auth = 'ghp_o6uUUf3qghzBwpRvS[aaa]GO[cc]OhviUQW8UcO3MyuNc'
             auth = auth.replace(/\[.*?\]/g, '');
             $.post({
                 url: 'https://api.github.com/repos/start-z/studydatum/dispatches',
