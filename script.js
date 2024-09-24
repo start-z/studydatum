@@ -20,6 +20,12 @@ const scriptArray = [
                 }
             })
         }
+    },
+    {
+        name: 'wzryutils',
+        methods: () => {
+
+        }
     }
 ]
 
