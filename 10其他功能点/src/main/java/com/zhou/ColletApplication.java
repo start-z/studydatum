@@ -12,12 +12,11 @@ import org.springframework.context.annotation.Bean;
 import javax.annotation.PostConstruct;
 
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
-
 public class ColletApplication{
     public static void main(String[] args) {
         SpringApplication springApplication = new SpringApplication(ColletApplication.class);
-//       springApplication.addInitializers(new InitSpring());
        springApplication.run(args);
+
     }
 
     @Autowired
