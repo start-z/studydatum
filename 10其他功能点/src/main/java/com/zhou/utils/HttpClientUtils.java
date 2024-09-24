@@ -47,7 +47,8 @@ public class HttpClientUtils {
      * @return 响应体（JSON格式字符串），如果请求失败则返回null
      * @throws IOException 如果发生网络错误
      */
-    public static String sendRequest(HttpMethod method, String url, String requestBodyJson, Map<String, String> headers) throws IOException, NoSuchAlgorithmException, KeyManagementException {
+    public static String sendRequest(HttpMethod method, String url, String requestBodyJson, Map<String, String> headers) {
+        try{
         // 创建一个信任所有证书的SSLContext
         SSLContext sslContext = createTrustAllSSLContext();
 
@@ -60,7 +61,7 @@ public class HttpClientUtils {
         // 创建一个支持HTTPS的PoolingHttpClientConnectionManager，使用上述Registry
         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
 
-        try (CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(connectionManager).build()) {
+       CloseableHttpClient httpClient = HttpClients.custom().setConnectionManager(connectionManager).build();
             HttpUriRequest request = createHttpRequest(method, url, requestBodyJson, headers);
             printHttpRequestDetails(request);
             HttpResponse response = httpClient.execute(request);
@@ -76,7 +77,7 @@ public class HttpClientUtils {
                 log.error("Error: Request failed with status code " + statusCode);
                 return null;
             }
-        } catch (IOException e) {
+        } catch (IOException | NoSuchAlgorithmException | KeyManagementException e) {
             log.error("An exception occurred while executing the request:");
             e.printStackTrace();
             return null;
