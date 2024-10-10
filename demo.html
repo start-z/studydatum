@@ -10,7 +10,7 @@
 <div id="main">
     <input type="text" placeholder="请你输入英雄名称获取资源"/>
     <ul id="hero-list">
-        
+
     </ul>
     <input type="button" onclick="searchHero()">
 
@@ -20,7 +20,9 @@
 </html>
 <script type="application/javascript">
     function searchHero() {
-        $.get('')
+        $.get('https://pvp.qq.com/web201605/js/herolist.json').then(res=>{
+            console.log(res)
+        })
     }
 
 

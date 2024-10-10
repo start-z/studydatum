@@ -23,25 +23,37 @@ public class WzryUtils {
 
     public static void main(String[] args) throws IOException, NoSuchAlgorithmException, KeyManagementException {
         getConfig();
+        Api api = new Api();
         boolean error = true;
         while (error) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("请你输入想要下载的英雄mv");
+            System.out.println("请你输入想要下载的英雄mv或者语音");
             String heroName = scanner.nextLine();
             JSONObject jsonObject = allHeros.get(heroName);
+            String heroId = jsonObject.getString("ename");
             if (jsonObject == null) {
                 System.out.println("当前没有这个英雄");
                 error = false;
                 return;
             }
-            System.out.println("请你选择这个英雄的皮肤");
-            String[] skin_names = jsonObject.getString("skin_name").split("\\|");
-            for (int i = 0; i < skin_names.length; i++) {
-                System.out.println(i + ":" + skin_names[i]);
+            System.out.println("下载mv输入1;下载语音输入2");
+            int isMv = scanner.nextInt();
+            if (isMv == 1) {
+                System.out.println("请你选择这个英雄的皮肤");
+                String[] skin_names = jsonObject.getString("skin_name").split("\\|");
+                for (int i = 0; i < skin_names.length; i++) {
+                    System.out.println(i + ":" + skin_names[i]);
+                }
+                System.out.println("请选择" + heroName + "的皮肤");
+                int skin = scanner.nextInt();
+                System.out.println("你的英雄mv地址为" + String.format(videoUrl, "30" + heroId + skin));
+            }else if(isMv == 2){
+                System.out.println("正在查询中");
+                //获取到语音集合
+                api.getVoicesByHeroId(heroId);
+
+
             }
-            System.out.println("请选择" + heroName + "的皮肤");
-            int skin = scanner.nextInt();
-            System.out.println("你的英雄mv地址为" + String.format(videoUrl, "30" + jsonObject.getString("ename") + skin));
         }
     }
 
