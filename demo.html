@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.7.1.js"></script>
+</head>
+<body>
+<div id="header"></div>
+<div id="main">
+    <input type="text" placeholder="请你输入英雄名称获取资源"/>
+    <ul id="hero-list">
+
+    </ul>
+    <input type="button" onclick="searchHero()">
+
+</div>
+<div id="bottom"></div>
+</body>
+</html>
+<script type="application/javascript">
+    function searchHero() {
+        $.get('https://pvp.qq.com/web201605/js/herolist.json').then(res=>{
+            console.log(res)
+        })
+    }
+
+
+</script>

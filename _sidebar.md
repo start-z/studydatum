@@ -11,4 +11,5 @@
 * [python学习之路](python/相关资料/readME.md)
 * [安装教程](Installation/oracle11g安装教程.md)
 * [项目学习笔记](otherUtilsStudy/RUO-YI/RUOYI.md)
+* [面试宝典](interview/java核心知识点.md)
 * [其他学习资料](otherStudy/english/English.md)
