@@ -1,11 +1,10 @@
 package com.zhou.utils;
 
 import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
+import com.zhou.config.ReOfferConfig;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
@@ -14,10 +13,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 import java.util.stream.Collectors;
+
+/**
+ * 条件复盘
+ */
 @Component
-public class HttpTextReplaceDemo {
-    public  void getDDL() {
-        String date = "2025-01";
+public class ReOfferA {
+    public void getDDL(String date) {
         // 假设我们要请求的URL，获取某个指定日期的数据
         String targetUrl = "http://api.haoshenqi.top/holiday?date=" + date; // 用实际的API替换
 
@@ -28,18 +30,32 @@ public class HttpTextReplaceDemo {
         if (jsonResponse != null) {
             List<Holiday> holidays = JSONArray.parseArray(jsonResponse, Holiday.class);
             holidays = holidays.stream().filter(item -> item.status == 0).collect(Collectors.toList());
-            // 模拟一个文本替换操作 {t-2}成交量为阳线,
-            String templateText = "{t-1}涨停,{t}成交量>5000万且{t}成交量为阴线且{t}竞价金额>1000万，{t}收盘价<{t-1}收盘价，（{t}成交量/{t-1}成交量)<2.5，{t}换手率>15%,不是st股、创业板股票、北交所股票、科创板股票";
-            String templateText2 = "{t-1}日涨停且2<{t-1}日连续涨停天数<6,{t-1}日14点前涨停,{t}日早盘竞价金额>2000万,2%<{t}日9点25分涨幅<5%,不是st股、创业板股票、北交所股票、科创板股票";
-            for (int i = 1; i < holidays.size(); i++) {
-                String updatedText = templateText.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
-//                System.out.println("龙包阴条件:");
-//                System.out.println(updatedText);
-                System.out.println("打板条件:");
-                String updatedText2 = templateText2.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
-                System.out.println(updatedText2);
-                System.out.println("----------");
-            }
+            longBaoyin(holidays);
+            playingBoard(holidays);
+        }
+    }
+
+    /**
+     * 龙包阴战法 复盘
+     */
+    public void longBaoyin(List<Holiday> holidays) {
+        System.out.println("龙包阴条件:");
+        for (int i = 1; i < holidays.size(); i++) {
+            String updatedText = ReOfferConfig.longBaoYinCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            System.out.println(updatedText);
+        }
+    }
+
+    /**
+     * 打板
+     *
+     * @param holidays
+     */
+    public void playingBoard(List<Holiday> holidays) {
+        System.out.println("打板条件:");
+        for (int i = 1; i < holidays.size(); i++) {
+            String updatedText = ReOfferConfig.longBaoYinCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            System.out.println(updatedText);
         }
     }
 
@@ -80,13 +96,12 @@ public class HttpTextReplaceDemo {
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
-    public  static  class Holiday {
+    public static class Holiday {
         private String date;
         private int year;
         private int month;
         private int day;
         private int status;
-
     }
 }
 
