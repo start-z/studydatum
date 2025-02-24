@@ -54,7 +54,7 @@ public class ReOfferA {
     public void playingBoard(List<Holiday> holidays) {
         System.out.println("打板条件:");
         for (int i = 1; i < holidays.size(); i++) {
-            String updatedText = ReOfferConfig.longBaoYinCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            String updatedText = ReOfferConfig.playingCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
             System.out.println(updatedText);
         }
     }
