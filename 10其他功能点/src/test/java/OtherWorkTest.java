@@ -1,15 +1,12 @@
-import com.zhou.annotation.Demo;
-import com.zhou.aspect.DemoAspect;
 import com.zhou.othWorkApplication;
 import com.zhou.service.OtherWorkService;
-import org.junit.jupiter.api.Test;
+import com.zhou.utils.ReOfferA;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,6 +21,14 @@ import java.io.InputStreamReader;
 public class OtherWorkTest {
     @Autowired
       private OtherWorkService otherWorkService;
+
+    @Autowired
+    private ReOfferA reOfferA;
+
+    @Test
+    public void getDDL(){
+        reOfferA.getDDL("2025-2");
+    }
     @Test
     public void  test(){
         otherWorkService.hello();
@@ -42,5 +47,4 @@ public class OtherWorkTest {
         }
 
     }
-
 }
