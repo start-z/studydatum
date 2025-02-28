@@ -12,6 +12,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 /**
@@ -20,9 +21,14 @@ import java.util.stream.Collectors;
 @Component
 public class ReOfferA {
     public void getDDL(String date) {
+        Scanner scanner = new Scanner(System.in);
         // 假设我们要请求的URL，获取某个指定日期的数据
         String targetUrl = "http://api.haoshenqi.top/holiday?date=" + date; // 用实际的API替换
-
+        System.out.println("请输入你想要的复盘条件");
+        System.out.println("1:龙包阴");
+        System.out.println("2:高位博龙头");
+        System.out.println("3:首板");
+        int anInt = scanner.nextInt();
         // 执行HTTP请求并获取返回的JSON数据
         String jsonResponse = sendHttpRequest(targetUrl);
 
@@ -30,8 +36,20 @@ public class ReOfferA {
         if (jsonResponse != null) {
             List<Holiday> holidays = JSONArray.parseArray(jsonResponse, Holiday.class);
             holidays = holidays.stream().filter(item -> item.status == 0).collect(Collectors.toList());
-            longBaoyin(holidays);
-            playingBoard(holidays);
+            switch (anInt) {
+                case 1:
+                    longBaoyin(holidays);
+                    break;
+                case 2:
+                    playingBoard(holidays);
+                    break;
+                case 3:
+                    shouban(holidays);
+                    break;
+                default:
+                    System.out.println("请按照规则输入指令");
+                    break;
+            }
         }
     }
 
@@ -42,6 +60,18 @@ public class ReOfferA {
         System.out.println("龙包阴条件:");
         for (int i = 1; i < holidays.size(); i++) {
             String updatedText = ReOfferConfig.longBaoYinCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            System.out.println(updatedText);
+        }
+    }
+
+    /**
+     * 首板 复盘
+     */
+    public void shouban(List<Holiday> holidays) {
+        System.out.println("首板:");
+        String shouban = "{t-1}日涨停且{t-1}日连续涨停天数=1,2%<{t}日竞价涨幅<5%,{t}日竞价金额>3000万,10<股价<50,不是st股、创业板股票、北交所股票、科创板股票";
+        for (int i = 1; i < holidays.size(); i++) {
+            String updatedText = shouban.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
             System.out.println(updatedText);
         }
     }
