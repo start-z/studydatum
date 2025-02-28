@@ -69,7 +69,7 @@ public class ReOfferA {
      */
     public void shouban(List<Holiday> holidays) {
         System.out.println("首板:");
-        String shouban = "{t-1}日涨停且{t-1}日连续涨停天数=1,2%<{t}日竞价涨幅<5%,{t}日竞价金额>3000万,10<股价<50,不是st股、创业板股票、北交所股票、科创板股票";
+        String shouban = "{t-1}日涨停且{t-1}日连续涨停天数=1,2%<{t}日9点25分涨幅<5%,{t}日竞价金额>3000万,10<股价<50,不是st股、创业板股票、北交所股票、科创板股票";
         for (int i = 1; i < holidays.size(); i++) {
             String updatedText = shouban.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
             System.out.println(updatedText);
