@@ -28,6 +28,7 @@ public class ReOfferA {
         System.out.println("1:龙包阴");
         System.out.println("2:高位博龙头");
         System.out.println("3:首板");
+        System.out.println("4:新打板");
         int anInt = scanner.nextInt();
         // 执行HTTP请求并获取返回的JSON数据
         String jsonResponse = sendHttpRequest(targetUrl);
@@ -46,10 +47,21 @@ public class ReOfferA {
                 case 3:
                     shouban(holidays);
                     break;
+                case 4:
+                    newDaBan(holidays);
+                    break;
                 default:
                     System.out.println("请按照规则输入指令");
                     break;
             }
+        }
+    }
+
+    public void newDaBan(List<Holiday> holidays) {
+        System.out.println("新开发打板:");
+        for (int i = 1; i < holidays.size(); i++) {
+            String updatedText = ReOfferConfig.newDaBanCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            System.out.println(updatedText);
         }
     }
 
@@ -68,10 +80,9 @@ public class ReOfferA {
      * 首板 复盘
      */
     public void shouban(List<Holiday> holidays) {
-        System.out.println("首板:");
-        String shouban = "{t-1}日涨停且{t-1}日连续涨停天数=1,2%<{t}日9点25分涨幅<5%,{t}日竞价金额>3000万,10<股价<50,不是st股、创业板股票、北交所股票、科创板股票";
+        System.out.println("一进二:");
         for (int i = 1; i < holidays.size(); i++) {
-            String updatedText = shouban.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            String updatedText = ReOfferConfig.oneEnterTwoCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
             System.out.println(updatedText);
         }
     }
