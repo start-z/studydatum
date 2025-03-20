@@ -143,6 +143,11 @@ public class ReOfferA {
         private int month;
         private int day;
         private int status;
+
+        public String getDate() {
+            return year + "年" + month + "月" + day;
+        }
     }
+
 }
 
