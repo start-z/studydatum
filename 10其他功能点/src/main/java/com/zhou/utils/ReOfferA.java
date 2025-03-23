@@ -29,6 +29,7 @@ public class ReOfferA {
         System.out.println("2:高位博龙头");
         System.out.println("3:首板");
         System.out.println("4:新打板");
+        System.out.println("5:低位涨停反包");
         int anInt = scanner.nextInt();
         // 执行HTTP请求并获取返回的JSON数据
         String jsonResponse = sendHttpRequest(targetUrl);
@@ -50,6 +51,9 @@ public class ReOfferA {
                 case 4:
                     newDaBan(holidays);
                     break;
+                case 5:
+                    lowPacket(holidays);
+                    break;
                 default:
                     System.out.println("请按照规则输入指令");
                     break;
@@ -61,6 +65,20 @@ public class ReOfferA {
         System.out.println("新开发打板:");
         for (int i = 1; i < holidays.size(); i++) {
             String updatedText = ReOfferConfig.newDaBanCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            System.out.println(updatedText);
+        }
+    }
+
+    /**
+     * 低位涨停反包
+     * @param holidays
+     */
+    public void lowPacket(List<Holiday> holidays) {
+        System.out.println("低位涨停反包:");
+        for (int i = 1; i < holidays.size(); i++) {
+            String updatedText = ReOfferConfig.lowPacketCondition
+                    .replace("{t}", holidays.get(i).getDate())
+                    .replace("{t-1}", holidays.get(i - 1).getDate());
             System.out.println(updatedText);
         }
     }
