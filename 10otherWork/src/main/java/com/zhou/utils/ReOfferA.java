@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -23,7 +24,6 @@ public class ReOfferA {
     public void getDDL(String date) {
         Scanner scanner = new Scanner(System.in);
         // 假设我们要请求的URL，获取某个指定日期的数据
-        String targetUrl = "http://api.haoshenqi.top/holiday?date=" + date; // 用实际的API替换
         System.out.println("请输入你想要的复盘条件");
         System.out.println("1:龙包阴");
         System.out.println("2:高位博龙头");
@@ -32,53 +32,59 @@ public class ReOfferA {
         System.out.println("5:低位涨停反包");
         int anInt = scanner.nextInt();
         // 执行HTTP请求并获取返回的JSON数据
-        String jsonResponse = sendHttpRequest(targetUrl);
-
+        List<Holiday> holidays = getHolidays(date);
+        holidays = holidays.stream().filter(item -> item.status == 0).collect(Collectors.toList());
         // 假设返回的数据包含一个"tradeDate"字段，我们需要用它来替换文本
-        if (jsonResponse != null) {
-            List<Holiday> holidays = JSONArray.parseArray(jsonResponse, Holiday.class);
-            holidays = holidays.stream().filter(item -> item.status == 0).collect(Collectors.toList());
-            switch (anInt) {
-                case 1:
-                    longBaoyin(holidays);
-                    break;
-                case 2:
-                    playingBoard(holidays);
-                    break;
-                case 3:
-                    shouban(holidays);
-                    break;
-                case 4:
-                    newDaBan(holidays);
-                    break;
-                case 5:
-                    lowPacket(holidays);
-                    break;
-                default:
-                    System.out.println("请按照规则输入指令");
-                    break;
-            }
+        switch (anInt) {
+            case 1:
+                longBaoyin(holidays);
+                break;
+            case 2:
+                playingBoard(holidays);
+                break;
+            case 3:
+                shouban(holidays);
+                break;
+            case 4:
+                newDaBan(holidays);
+                break;
+            case 5:
+                lowPacket(holidays);
+                break;
+            default:
+                System.out.println("请按照规则输入指令");
+                break;
         }
     }
 
     public void newDaBan(List<Holiday> holidays) {
         System.out.println("新开发打板:");
         for (int i = 1; i < holidays.size(); i++) {
-            String updatedText = ReOfferConfig.newDaBanCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            String updatedText = ReOfferConfig.newDaBanCondition.replace("{t}", holidays.get(i).getDate1()).replace("{t-1}", holidays.get(i - 1).getDate1());
             System.out.println(updatedText);
         }
     }
 
+    public List<Holiday> getHolidays(String dateStringYYMMDD) {
+        ArrayList<Holiday> res = new ArrayList<>();
+        String targetUrl = "http://api.haoshenqi.top/holiday?date=" + dateStringYYMMDD; // 用实际的API替换
+        String jsonResponse = sendHttpRequest(targetUrl);
+        if (jsonResponse != null) {
+            List<Holiday> holidays = JSONArray.parseArray(jsonResponse, Holiday.class);
+            res.addAll(holidays);
+        }
+        return res;
+    }
+
     /**
      * 低位涨停反包
+     *
      * @param holidays
      */
     public void lowPacket(List<Holiday> holidays) {
         System.out.println("低位涨停反包:");
         for (int i = 1; i < holidays.size(); i++) {
-            String updatedText = ReOfferConfig.lowPacketCondition
-                    .replace("{t}", holidays.get(i).getDate())
-                    .replace("{t-1}", holidays.get(i - 1).getDate());
+            String updatedText = ReOfferConfig.lowPacketCondition.replace("{t}", holidays.get(i).getDate1()).replace("{t-1}", holidays.get(i - 1).getDate1());
             System.out.println(updatedText);
         }
     }
@@ -89,7 +95,7 @@ public class ReOfferA {
     public void longBaoyin(List<Holiday> holidays) {
         System.out.println("龙包阴条件:");
         for (int i = 1; i < holidays.size(); i++) {
-            String updatedText = ReOfferConfig.longBaoYinCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            String updatedText = ReOfferConfig.longBaoYinCondition.replace("{t}", holidays.get(i).getDate1()).replace("{t-1}", holidays.get(i - 1).getDate1());
             System.out.println(updatedText);
         }
     }
@@ -100,7 +106,7 @@ public class ReOfferA {
     public void shouban(List<Holiday> holidays) {
         System.out.println("一进二:");
         for (int i = 1; i < holidays.size(); i++) {
-            String updatedText = ReOfferConfig.oneEnterTwoCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            String updatedText = ReOfferConfig.oneEnterTwoCondition.replace("{t}", holidays.get(i).getDate1()).replace("{t-1}", holidays.get(i - 1).getDate1());
             System.out.println(updatedText);
         }
     }
@@ -113,12 +119,12 @@ public class ReOfferA {
     public void playingBoard(List<Holiday> holidays) {
         System.out.println("打板条件:");
         for (int i = 1; i < holidays.size(); i++) {
-            String updatedText = ReOfferConfig.playingCondition.replace("{t}", holidays.get(i).getDate()).replace("{t-1}", holidays.get(i - 1).getDate());
+            String updatedText = ReOfferConfig.playingCondition.replace("{t}", holidays.get(i).getDate1()).replace("{t-1}", holidays.get(i - 1).getDate1());
             System.out.println(updatedText);
         }
     }
 
-    public String sendHttpRequest(String targetUrl) {
+    private static String sendHttpRequest(String targetUrl) {
         StringBuilder result = new StringBuilder();
 
         try {
@@ -162,8 +168,8 @@ public class ReOfferA {
         private int day;
         private int status;
 
-        public String getDate() {
-            return year + "年" + month + "月" + day;
+        public String getDate1() {
+            return year + "年" + month + "月" + day + "日";
         }
     }
 

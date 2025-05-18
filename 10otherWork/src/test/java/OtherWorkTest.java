@@ -1,4 +1,4 @@
-import com.zhou.othWorkApplication;
+import com.zhou.OthWorkApplication;
 import com.zhou.service.OtherWorkService;
 import com.zhou.utils.ReOfferA;
 import org.junit.Test;
@@ -16,7 +16,7 @@ import java.io.InputStreamReader;
  * @creat 2022-07-13 20:23
  * @description:
  */
-@SpringBootTest(classes = othWorkApplication.class)
+@SpringBootTest(classes = OthWorkApplication.class)
 @RunWith(SpringRunner.class)
 public class OtherWorkTest {
     @Autowired
@@ -27,7 +27,7 @@ public class OtherWorkTest {
 
     @Test
     public void getDDL(){
-        reOfferA.getDDL("2025-2");
+        reOfferA.getDDL("2025-4");
     }
     @Test
     public void  test(){
