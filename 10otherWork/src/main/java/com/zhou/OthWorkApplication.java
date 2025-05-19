@@ -40,7 +40,7 @@ public class OthWorkApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource( MyAppUtils.BASE_PATH + "main.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource( MyAppUtils.BASE_PATH + "login.fxml"));
         fxmlLoader.setControllerFactory(springContext::getBean);
         Scene scene = new Scene(fxmlLoader.load(), 600, 500);
         stage.setTitle("我的策略!");
