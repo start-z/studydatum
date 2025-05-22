@@ -16,6 +16,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -41,9 +44,19 @@ public class MainController {
     @FXML
     private TextArea two;
 
+
+    public void initialize(){
+        String nowTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        System.out.println(nowTime);
+        datePic.setValue(LocalDate.parse(getClByDate(nowTime)));
+    }
     @FXML
     void onSubmit(ActionEvent event) {
-        List<Integer> yearMonthDay = MyAppUtils.splictYearMonthDay(datePic.getValue().toString());
+        getClByDate(datePic.getValue().toString());
+    }
+
+    private String getClByDate(String dateYYYYMMDD) {
+        List<Integer> yearMonthDay = MyAppUtils.splictYearMonthDay(dateYYYYMMDD);
         String dateString = String.format("%04d-%02d", yearMonthDay.get(0), yearMonthDay.get(1));
         List<ReOfferA.Holiday> holidayList = reOfferA.getHolidays(dateString);
         if (yearMonthDay.get(2) > 20) {
@@ -62,7 +75,7 @@ public class MainController {
                 HashMap::new));
         //找到当前日期的索引
         int diffCount = 0;
-        int holiIndex = holidayMap.get(datePic.getValue().toString());
+        int holiIndex = holidayMap.get(dateYYYYMMDD);
         while (holidayList.get(holiIndex).getStatus() != 0) {
             //不是工作日
             if (holidayList.get(holiIndex - diffCount).getStatus() != 0) {
@@ -84,6 +97,8 @@ public class MainController {
         two.setText(ReOfferConfig.lowPacketCondition.replace("{t}", notHolidays.get(endIndex - 1).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 2).getDate1()));
         three.setText(ReOfferConfig.lowPacketCondition.replace("{t}", notHolidays.get(endIndex - 2).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 3).getDate1()));
         ;
+
+        return  notHolidays.get(endIndex).getDate();
     }
 
 }
