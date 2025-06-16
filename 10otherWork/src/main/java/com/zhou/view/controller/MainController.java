@@ -93,9 +93,9 @@ public class MainController {
         }else {
             msg.setText("");
         }
-        one.setText(ReOfferConfig.lowPacketCondition.replace("{t}", notHolidays.get(endIndex).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 1).getDate1()));
-        two.setText(ReOfferConfig.lowPacketCondition.replace("{t}", notHolidays.get(endIndex - 1).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 2).getDate1()));
-        three.setText(ReOfferConfig.lowPacketCondition.replace("{t}", notHolidays.get(endIndex - 2).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 3).getDate1()));
+        one.setText(ReOfferConfig.newLowPacketCondition.replace("{t}", notHolidays.get(endIndex).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 1).getDate1()));
+        two.setText(ReOfferConfig.newLowPacketCondition.replace("{t}", notHolidays.get(endIndex - 1).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 2).getDate1()));
+        three.setText(ReOfferConfig.newLowPacketCondition.replace("{t}", notHolidays.get(endIndex - 2).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 3).getDate1()));
         ;
 
         return  notHolidays.get(endIndex).getDate();
