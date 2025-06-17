@@ -4,8 +4,11 @@ import com.zhou.config.ReOfferConfig;
 import com.zhou.utils.ReOfferA;
 import com.zhou.view.utils.MyAppUtils;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -21,6 +24,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -45,17 +49,38 @@ public class MainController {
     private TextArea two;
 
 
-    public void initialize(){
+    @FXML
+    private ChoiceBox<String> strategyList;
+
+    Map<String, String> conditionMap = new HashMap<String, String>() {{
+        put("龙包阴", ReOfferConfig.longBaoYinCondition);
+        put("高位博龙头", ReOfferConfig.playingCondition);
+        put("首板", ReOfferConfig.oneEnterTwoCondition);
+        put("新打板", ReOfferConfig.newDaBanCondition);
+        put("低位涨停反包", ReOfferConfig.lowPacketCondition);
+    }};
+
+
+    public void initialize() {
         String nowTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         System.out.println(nowTime);
-        datePic.setValue(LocalDate.parse(getClByDate(nowTime)));
-    }
-    @FXML
-    void onSubmit(ActionEvent event) {
-        getClByDate(datePic.getValue().toString());
+        // 把策略名称作为下拉选项显示出来
+        ObservableList<String> strategyNames = FXCollections.observableArrayList(conditionMap.keySet());
+        strategyList.setItems(strategyNames);
+        // 可选：设置默认选中第一个
+        strategyList.getSelectionModel().select(4);
+        strategyList.setOnAction((event -> {
+            onSubmit(event);
+        }));
+        datePic.setValue(LocalDate.parse(getClByDate(nowTime, strategyList.getValue())));
     }
 
-    private String getClByDate(String dateYYYYMMDD) {
+    @FXML
+    void onSubmit(ActionEvent event) {
+        getClByDate(datePic.getValue().toString(), strategyList.getValue());
+    }
+
+    String getClByDate(String dateYYYYMMDD, String type) {
         List<Integer> yearMonthDay = MyAppUtils.splictYearMonthDay(dateYYYYMMDD);
         String dateString = String.format("%04d-%02d", yearMonthDay.get(0), yearMonthDay.get(1));
         List<ReOfferA.Holiday> holidayList = reOfferA.getHolidays(dateString);
@@ -90,15 +115,16 @@ public class MainController {
         Integer endIndex = notHolidaysMap.get(holidayList.get(holiIndex).getDate());
         if (diffCount > 0) {
             msg.setText("日期为节假日,选择上一个工作日" + notHolidays.get(endIndex).getDate1());
-        }else {
+        } else {
             msg.setText("");
         }
-        one.setText(ReOfferConfig.newLowPacketCondition.replace("{t}", notHolidays.get(endIndex).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 1).getDate1()));
-        two.setText(ReOfferConfig.newLowPacketCondition.replace("{t}", notHolidays.get(endIndex - 1).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 2).getDate1()));
-        three.setText(ReOfferConfig.newLowPacketCondition.replace("{t}", notHolidays.get(endIndex - 2).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 3).getDate1()));
+        String cl = conditionMap.get(type);
+        one.setText(cl.replace("{t}", notHolidays.get(endIndex).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 1).getDate1()));
+        two.setText(cl.replace("{t}", notHolidays.get(endIndex - 1).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 2).getDate1()));
+        three.setText(cl.replace("{t}", notHolidays.get(endIndex - 2).getDate1()).replace("{t-1}", notHolidays.get(endIndex - 3).getDate1()));
         ;
 
-        return  notHolidays.get(endIndex).getDate();
+        return notHolidays.get(endIndex).getDate();
     }
 
 }
