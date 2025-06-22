@@ -12,4 +12,5 @@
 * [安装教程](Installation/oracle11g安装教程.md)
 * [项目学习笔记](otherUtilsStudy/RUO-YI/RUOYI.md)
 * [面试宝典](interview/java核心知识点.md)
+* [面试总结](interview/面试总结/面试总结.md)
 * [其他学习资料](otherStudy/english/English.md)
