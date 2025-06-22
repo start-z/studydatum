@@ -1,0 +1,36 @@
+{"groups": [
+  {
+    "name": "zhou",
+    "type": "java.lang.String",
+    "sourceType": "org.springframework.boot.autoconfigure.web.WebProperties"
+  }
+],"properties": [
+  {
+    "name": "zhou.port",
+    "type": "java.lang.String",
+    "sourceType": "org.springframework.boot.autoconfigure.web.WebProperties",
+    "description": "helloworld port"
+  },
+  {
+    "name": "zhou.address",
+    "type": "java.lang.String",
+    "sourceType": "org.springframework.boot.autoconfigure.web.WebProperties",
+    "description": "helloworld address"
+
+  }
+],
+  "hints": [
+  {
+    "name": "zhou",
+    "values": [
+      {
+        "value": "port",
+        "description": "Disable DDL handling."
+      },
+      {
+        "value": "address",
+        "description": "Validate the schema, make no changes to the database."
+      }
+    ]
+  }
+]}

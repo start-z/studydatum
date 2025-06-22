@@ -1,0 +1,9 @@
+server:
+  port: 10221
+spring:
+  application:
+    name: otherWork
+  messages:
+    basename: i18n.otherWork  #国际化资源配置
+    encoding: utf-8
+

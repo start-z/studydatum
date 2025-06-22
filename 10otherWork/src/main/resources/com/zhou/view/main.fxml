@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.zhou.view.controller.MainController">
+   <children>
+      <DatePicker fx:id="datePic" layoutX="340.0" layoutY="14.0" onAction="#onSubmit" />
+      <Label layoutX="270.0" layoutY="19.0" text="当前日期：" />
+      <Label layoutX="40.0" layoutY="331.0" prefHeight="20.0" prefWidth="54.0" text="前日：" />
+      <Label layoutX="40.0" layoutY="234.0" prefHeight="20.0" prefWidth="54.0" text="昨日：" />
+      <Label layoutX="40.0" layoutY="121.0" prefHeight="20.0" prefWidth="54.0" text="当日：" />
+      <TextArea fx:id="one" layoutX="77.0" layoutY="90.0" prefHeight="82.0" prefWidth="496.0" />
+      <TextArea fx:id="two" layoutX="77.0" layoutY="203.0" prefHeight="82.0" prefWidth="496.0" />
+      <TextArea fx:id="three" layoutX="77.0" layoutY="300.0" prefHeight="82.0" prefWidth="496.0" />
+      <Label fx:id="msg" disable="true" layoutX="34.0" layoutY="54.0" prefHeight="29.0" prefWidth="513.0" textFill="#f50505">
+         <font>
+            <Font size="22.0" />
+         </font></Label>
+      <Label layoutX="14.0" layoutY="19.0" text="选择策略：" />
+      <ChoiceBox fx:id="strategyList" layoutX="83.0" layoutY="14.0" prefWidth="150.0" />
+   </children>
+</AnchorPane>
